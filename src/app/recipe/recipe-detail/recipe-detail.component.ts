@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; 
 import { RecipeModel } from '../recipe.model';
-import { RecipeService } from '../recipe.service';
+import { ModalService } from '../modal.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -13,12 +13,13 @@ export class RecipeDetailComponent implements OnInit {
   @Input() selectedRecipe: RecipeModel;
   @ViewChild('mymodal') modal: any;
   
-  constructor(private modalService: NgbModal, private recipeService: RecipeService) {}
+  constructor(private ngModalService: NgbModal, private modalService: ModalService) {}
 
   ngOnInit(): void {
-    this.recipeService.popup.subscribe(val => {
-      if (val === 'open') {
-        this.modalService.open(this.modal, {size: 'lg', scrollable: true});
+    this.modalService.selectedRecipe.subscribe(val => {
+      this.selectedRecipe = val;
+      if (val) {
+        this.ngModalService.open(this.modal, {size: 'lg', scrollable: true});
       }
     })
   }

@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AxiosService } from './axios/axios.service';
 import { RecipeService } from './recipe/recipe.service';
+import { ModalService } from './recipe/modal.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,11 @@ import { RecipeService } from './recipe/recipe.service';
     AppRoutingModule,
     NgbModule
   ],
-  providers: [AxiosService, RecipeService],
+  providers: [
+    AxiosService, 
+    RecipeService,
+    ModalService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
