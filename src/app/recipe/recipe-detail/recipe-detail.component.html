@@ -1,0 +1,49 @@
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{selectedRecipe.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img class="modal-content" [src]="selectedRecipe.thumbnail" alt="Card image cap">
+    <br/>
+    <div class="body-instr">
+      <h5>Instructions</h5>
+      <p>{{selectedRecipe.body}}</p>
+    </div>
+    <div class="body-ingredients">
+      <h5>Ingredients</h5>
+      <table class="table table-striped table-borderless table-hover">
+        <thead class="bg-info text-white">
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let items of selectedRecipe.ingredients">
+            <td>{{items.name}}</td>
+            <td>{{items.measure}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="body-link" *ngIf="selectedRecipe.link">
+      <h5>Youtube</h5>
+      <div class="embed-responsive embed-responsive-16by9 rounded">
+        <iframe class="embed-responsive-item" [src]="selectedRecipe.link | safe" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <br/>
+    <div class="body-tags">
+      <h5>Tags</h5>
+      <p class="btn btn-outline-info">{{selectedRecipe.category}}</p>
+      <p class="btn btn-outline-success ml-3">{{selectedRecipe.area}}</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" ngbAutoFocus class="btn btn-dark" (click)="modal.close('Save click')">Ok</button>
+    <button type="button" class="btn btn-outline-info"><i class="fas fa-heart"></i> Favourite</button>
+  </div>
+</ng-template>

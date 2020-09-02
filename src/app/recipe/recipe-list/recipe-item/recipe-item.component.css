@@ -1,0 +1,22 @@
+.card {
+    display: inline-block;
+    margin: 0.5em;
+    border-radius: 0.5em;
+    width: 25rem;
+    height: 40rem;
+}
+
+
+.card-img-top {
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    border: 0;
+}
+
+.card-text {
+    font-size: small;
+}
+
+.btn {
+    border-radius: 5em;
+}

@@ -1,0 +1,12 @@
+
+<div class="jumbotron">
+    <h1 class="display-4">Manage your recipes here</h1>
+    <p class="lead">You currenly have {{recipeList.length}} recipes in your inventory</p>
+    <hr class="my-4">
+    <a class="btn btn-danger" (click)="getRandomRecipe()">Get Random Recipe</a>
+</div>
+
+<div class="card-group justify-content-center">
+    <app-recipe-item *ngFor="let recipeitem of recipeList" [recipeInstance]="recipeitem"></app-recipe-item>
+</div>
+

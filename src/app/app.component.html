@@ -1,0 +1,25 @@
+<nav class="navbar container-fluid navbar-expand-lg navbar-light bg-white">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <ul class="navbar-nav mr-auto">
+        <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/shopping">Shopping</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/recipes">Recipes</a>
+      </ul>
+
+      <!-- <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" role="button">Dropdown</a>
+              <ul class="dropdown-menu">
+                  <li><a href="#">Save</a></li>
+                  <li><a href="#">About</a></li>
+              </ul>
+          </li>
+      </ul> -->
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
