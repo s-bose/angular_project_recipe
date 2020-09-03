@@ -1,5 +1,5 @@
-.modal-content {
-    width: 100%;
-    height: 70%;
-    object-fit: cover;
+.content-img {
+    width: 100% !important;
+    height: 30em !important;
+    object-fit: cover !important;
 }

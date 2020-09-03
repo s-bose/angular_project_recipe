@@ -1,12 +1,12 @@
-<ng-template #mymodal let-modal>
+<ng-template #mymodal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">{{selectedRecipe.title}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">×</span>
+    <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <img class="modal-content" [src]="selectedRecipe.thumbnail" alt="Card image cap">
+    <img class="content-img" [src]="selectedRecipe.thumbnail" alt="Card image cap">
     <br/>
     <div class="body-instr">
       <h5>Instructions</h5>
@@ -43,7 +43,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" ngbAutoFocus class="btn btn-dark" (click)="modal.close('Save click')">Ok</button>
+    <button type="button" ngbAutoFocus class="btn btn-dark" (click)="modalRef.close()">Ok</button>
     <button type="button" class="btn btn-outline-info"><i class="fas fa-heart"></i> Favourite</button>
   </div>
 </ng-template>

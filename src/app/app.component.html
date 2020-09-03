@@ -1,9 +1,9 @@
 <nav class="navbar container-fluid navbar-expand-lg navbar-light bg-white">
     <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div [collapse]="isCollapsed" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
         <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
         <a class="nav-link" routerLinkActive="active" routerLink="/shopping">Shopping</a>

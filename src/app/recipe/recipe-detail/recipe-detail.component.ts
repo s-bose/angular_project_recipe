@@ -1,26 +1,32 @@
-import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnDestroy, TemplateRef } from '@angular/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; 
 import { RecipeModel } from '../recipe.model';
 import { ModalService } from '../modal.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
-export class RecipeDetailComponent implements OnInit {
+export class RecipeDetailComponent implements OnInit, OnDestroy {
+  modalRef: BsModalRef;
   @Input() selectedRecipe: RecipeModel;
   @ViewChild('mymodal') modal: any;
   sub: any;
 
-  constructor(private ngModalService: NgbModal, private modalService: ModalService) {}
+  constructor(private modalService: ModalService,
+              private ngModalService: BsModalService) {}
 
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.ngModalService.show(template, {class: 'modal-lg'});
+  }
+  
   ngOnInit(): void {
     this.sub = this.modalService.selectedRecipe.subscribe(val => {
       this.selectedRecipe = val;
       if (val) {
-        this.ngModalService.open(this.modal, {size: 'lg', scrollable: true});
+        this.openModal(this.modal);
       }
     })
   }
