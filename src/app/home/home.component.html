@@ -4,18 +4,20 @@
         <p class="lead">Find your favourite recipes here</p>
         <div class="container-fluid">
             <div class="list-group" *ngIf="favouriteRecipes.length; else noFav">
-                <a href="" class="list-group-item list-group-item-action active">
+                <a routerLink="/recipes" class="list-group-item list-group-item-action active">
                     Favourite Recipes
                 </a>
-                <a href="" class="list-group-item list-group-item-action" *ngFor="let item of favouriteRecipes">{{item.title}}</a>
+                <a routerLink="/recipes" class="list-group-item list-group-item-action" *ngFor="let item of favouriteRecipes">{{item.title}}</a>
             </div>
 
             <ng-template #noFav>
-                <a href="" class="list-group-item list-group-item-action active">
+                <a routerLink="/recipes" class="list-group-item list-group-item-action active">
                     You have not added any favourite yet. Browse the Recipes section to add some...
                 </a>
             </ng-template>
         </div>
-    </div>   
+    </div>
+    
+    <router-outlet></router-outlet>
 </div>
 
