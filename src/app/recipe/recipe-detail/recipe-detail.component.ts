@@ -34,4 +34,8 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
+
+  onFavouriteSelected() {
+    this.selectedRecipe.favourite = !this.selectedRecipe.favourite;
+  }
 }

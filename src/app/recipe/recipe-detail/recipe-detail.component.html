@@ -9,6 +9,7 @@
     <img class="content-img" [src]="selectedRecipe.thumbnail" alt="Card image cap">
     <br/>
     <div class="body-instr">
+      <br/>
       <h5>Instructions</h5>
       <p>{{selectedRecipe.body}}</p>
     </div>
@@ -44,6 +45,10 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-dark" (click)="modalRef.hide()">Ok</button>
-    <button type="button" class="btn btn-outline-info"><i class="fas fa-heart"></i> Favourite</button>
+    <button type="button" class="btn" 
+    [ngClass]="{'btn-danger': selectedRecipe.favourite, 'btn-info': !selectedRecipe.favourite}" 
+    (click)="onFavouriteSelected()">
+    <i class="fas fa-heart"></i>{{selectedRecipe.favourite ? ' Un-Favourite' : ' Favourite'}}
+  </button>
   </div>
 </ng-template>

@@ -3,3 +3,12 @@
     height: 30em !important;
     object-fit: cover !important;
 }
+
+.btn {
+    border-radius: 5em;
+}
+
+.jumbotron {
+    margin-bottom: 5%;
+    padding-bottom: 0;
+}

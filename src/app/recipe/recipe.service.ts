@@ -1,15 +1,10 @@
 import { RecipeModel } from './recipe.model'
-import { EventEmitter, Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { EventEmitter } from '@angular/core';
 
-@Injectable()
 export class RecipeService {
     NewRecipeAdded = new EventEmitter<RecipeModel[]>();
-    showSelectedRecipe = new EventEmitter<RecipeModel>();
-    popup: Subject<any> = new Subject<any>();
 
     private recipeList: RecipeModel[] = []; 
-    private recipeSelected: RecipeModel;
 
     constructor() {}
     
@@ -22,5 +17,8 @@ export class RecipeService {
         this.NewRecipeAdded.emit(this.recipeList);
     }    
 
-
+    getFavouriteRecipes() {
+        console.log(this.recipeList);
+        return this.recipeList.filter(item => item.favourite);
+    }
 }
