@@ -48,7 +48,8 @@
     <button type="button" class="btn" 
     [ngClass]="{'btn-danger': selectedRecipe.favourite, 'btn-info': !selectedRecipe.favourite}" 
     (click)="onFavouriteSelected()">
-    <i class="fas fa-heart"></i>{{selectedRecipe.favourite ? ' Un-Favourite' : ' Favourite'}}
+    <span class="fas" 
+    [ngClass]="{'fa-heart-broken': selectedRecipe.favourite, 'fa-heart': !selectedRecipe.favourite}"></span>{{selectedRecipe.favourite ? ' Un-Favourite' : ' Favourite'}}
   </button>
   </div>
 </ng-template>

@@ -1,7 +1,8 @@
 <div class="card">
     <img class="card-img-top img-fluid" [src]="recipeInstance.thumbnail" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title font-weight-bold mb-2">{{recipeInstance.title}}</h5>
+      <h5 class="card-title font-weight-bold mb-2">{{recipeInstance.title}}
+        <span class="fas" [ngClass]="{'fa-heart': recipeInstance.favourite}"></span></h5>
       <p class="card-text">{{cardText}}</p>
       <div>
         <p class="btn btn-outline-info">{{recipeInstance.category}}</p>
