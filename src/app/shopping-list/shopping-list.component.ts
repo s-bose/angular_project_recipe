@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RecipeService } from '../recipe/recipe.service';
+import { shoppingItemModel } from './shopping-item.model';
 
 @Component({
   selector: 'app-shopping-list',
@@ -6,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-
-  constructor() { }
+  shoppingCartRecipes: shoppingItemModel[];
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
+    this.shoppingCartRecipes = this.recipeService.getShoppingList();
   }
-
 }

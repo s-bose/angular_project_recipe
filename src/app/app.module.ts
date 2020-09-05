@@ -22,6 +22,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AxiosService } from './axios/axios.service';
 import { RecipeService } from './recipe/recipe.service';
 import { ModalService } from './recipe/modal.service';
+import { ShoppingItemComponent } from './shopping-list/shopping-item/shopping-item.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ModalService } from './recipe/modal.service';
     ShoppingListComponent,
     PageNotFoundComponent,
     HomeComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    ShoppingItemComponent
   ],
   imports: [
     BrowserModule,

@@ -38,4 +38,8 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   onFavouriteSelected() {
     this.selectedRecipe.favourite = !this.selectedRecipe.favourite;
   }
+
+  onAddToShoppingSelected() {
+    this.selectedRecipe.addedToShopping = !this.selectedRecipe.addedToShopping;
+  }
 }

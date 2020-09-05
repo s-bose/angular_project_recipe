@@ -1,0 +1,25 @@
+<div class="col-lg-8">
+    <li class="list-group-item"
+    (click)="isCollapsed = !isCollapsed"
+    [attr.aria-expanded]="!isCollapsed"
+    aria-controls="collapseBasic">{{shoppingItem.title}}</li>
+    <div class="container-fluid p-0"
+    id="collapseBasic"
+    [collapse]="!isCollapsed" [isAnimated]="true">
+    <table class="table table-striped table-hover">
+        <thead class="bg-info text-white">
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let items of shoppingItem.ingredients">
+                <td>{{items.name}}</td>
+                <td>{{items.measure}}</td>
+            </tr>
+            </tbody>
+    </table>
+    </div>
+</div>
+

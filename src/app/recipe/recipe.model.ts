@@ -10,8 +10,9 @@ export class RecipeModel {
         measure: string
     }[];
     favourite: boolean;
+    addedToShopping: boolean;
 
-    constructor(title, body, category, area, thumbnail, link, ingredients, favourite = false) {
+    constructor(title, body, category, area, thumbnail, link, ingredients, favourite = false, addedToShopping = false) {
         this.title = title;
         this.body = body;
         this.category = category;
@@ -20,5 +21,6 @@ export class RecipeModel {
         this.link = link;
         this.ingredients = ingredients;
         this.favourite = favourite;
+        this.addedToShopping = addedToShopping;
     }
 }

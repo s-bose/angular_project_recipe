@@ -1,1 +1,10 @@
-<p>shopping-list works!</p>
+<div class="jumbotron">
+    <div class="container-fluid">
+      <h1 class="display-4"><span><img src="assets/undraw_empty_cart.svg" alt="Card thumbnail" style="width: 1.5em; height: auto;"></span>Your cart</h1>
+      <p class="lead">Manage the ingredients that you want to buy here</p>
+      <div class="list-group list-group-flush">
+        <app-shopping-item *ngFor="let shoppingItem of shoppingCartRecipes" [shoppingItem]="shoppingItem"></app-shopping-item>
+      </div>
+    </div>
+  </div>
+  

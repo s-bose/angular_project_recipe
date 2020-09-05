@@ -7,14 +7,14 @@
   </div>
   <div class="modal-body">
     <img class="content-img" [src]="selectedRecipe.thumbnail" alt="Card image cap">
-    <br/>
+    <br />
     <div class="body-instr">
-      <br/>
-      <h5>Instructions</h5>
+      <br />
+      <h5><span class="fas fa-list-ul fa-fw"></span>&nbsp; Instructions</h5>
       <p>{{selectedRecipe.body}}</p>
     </div>
     <div class="body-ingredients">
-      <h5>Ingredients</h5>
+      <h5><span class="fas fa-leaf fa-fw"></span>&nbsp; Ingredients</h5>
       <table class="table table-striped table-borderless table-hover">
         <thead class="bg-info text-white">
           <tr>
@@ -31,25 +31,33 @@
       </table>
     </div>
     <div class="body-link" *ngIf="selectedRecipe.link">
-      <h5>Youtube</h5>
+      <h5><span class="fab fa-youtube fa-fw"></span>&nbsp; Youtube</h5>
       <div class="embed-responsive embed-responsive-16by9 rounded">
-        <iframe class="embed-responsive-item" [src]="selectedRecipe.link | safe" frameborder="0" allowfullscreen></iframe>
+        <iframe class="embed-responsive-item" [src]="selectedRecipe.link | safe" frameborder="0"
+          allowfullscreen></iframe>
       </div>
     </div>
-    <br/>
+    <br />
     <div class="body-tags">
-      <h5>Tags</h5>
+      <h5><span class="fas fa-tag fa-fw"></span>&nbsp; Tags</h5>
       <p class="btn btn-outline-info">{{selectedRecipe.category}}</p>
       <p class="btn btn-outline-success ml-3">{{selectedRecipe.area}}</p>
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-dark" (click)="modalRef.hide()">Ok</button>
-    <button type="button" class="btn" 
-    [ngClass]="{'btn-danger': selectedRecipe.favourite, 'btn-info': !selectedRecipe.favourite}" 
-    (click)="onFavouriteSelected()">
-    <span class="fas" 
-    [ngClass]="{'fa-heart-broken': selectedRecipe.favourite, 'fa-heart': !selectedRecipe.favourite}"></span>{{selectedRecipe.favourite ? ' Un-Favourite' : ' Favourite'}}
-  </button>
+    <!-- <button type="button" class="btn btn-dark" (click)="modalRef.hide()">Ok</button> -->
+    <button type="button" class="btn"
+      [ngClass]="{'btn-danger': selectedRecipe.favourite, 'btn-info': !selectedRecipe.favourite}"
+      (click)="onFavouriteSelected()">
+      <span class="fas fa-fw"
+        [ngClass]="{'fa-heart-broken': selectedRecipe.favourite, 'fa-heart': !selectedRecipe.favourite}"></span>&nbsp;{{selectedRecipe.favourite ? ' Un-Favourite' : ' Favourite'}}
+    </button>
+
+    <button type="button" class="btn"
+      [ngClass]="{'btn-danger': selectedRecipe.addedToShopping, 'btn-info': !selectedRecipe.addedToShopping}"
+      (click)="onAddToShoppingSelected()">
+      <span class="fas fa-fw"
+        [ngClass]="{'fa-heart-broken': selectedRecipe.addedToShopping, 'fa-heart': !selectedRecipe.addedToShopping}"></span>&nbsp;{{selectedRecipe.addedToShopping ? ' Remove' : ' Add'}}
+    </button>
   </div>
 </ng-template>
