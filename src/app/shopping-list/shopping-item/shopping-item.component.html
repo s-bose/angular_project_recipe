@@ -1,8 +1,11 @@
-<div class="col-lg-8">
-    <li class="list-group-item"
+<div>
+    <a class="list-group-item list-group-item-action"
     (click)="isCollapsed = !isCollapsed"
     [attr.aria-expanded]="!isCollapsed"
-    aria-controls="collapseBasic">{{shoppingItem.title}}</li>
+    aria-controls="collapseBasic">
+        <h5>{{shoppingItem.title}}</h5>
+        <hr/>
+    </a>
     <div class="container-fluid p-0"
     id="collapseBasic"
     [collapse]="!isCollapsed" [isAnimated]="true">

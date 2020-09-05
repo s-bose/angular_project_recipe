@@ -54,10 +54,10 @@
     </button>
 
     <button type="button" class="btn"
-      [ngClass]="{'btn-danger': selectedRecipe.addedToShopping, 'btn-info': !selectedRecipe.addedToShopping}"
+      [ngClass]="{'btn-danger': selectedRecipe.addedToShopping, 'btn-success': !selectedRecipe.addedToShopping}"
       (click)="onAddToShoppingSelected()">
       <span class="fas fa-fw"
-        [ngClass]="{'fa-heart-broken': selectedRecipe.addedToShopping, 'fa-heart': !selectedRecipe.addedToShopping}"></span>&nbsp;{{selectedRecipe.addedToShopping ? ' Remove' : ' Add'}}
+        [ngClass]="{'fa-minus': selectedRecipe.addedToShopping, 'fa-plus': !selectedRecipe.addedToShopping}"></span>&nbsp;{{selectedRecipe.addedToShopping ? ' Remove' : ' Add'}}
     </button>
   </div>
 </ng-template>

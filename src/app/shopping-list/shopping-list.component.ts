@@ -13,5 +13,12 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.shoppingCartRecipes = this.recipeService.getShoppingList();
+
+    let searchSection = document.getElementById('searchSection');
+    searchSection.appendChild(document.createElement('script')).src = "https://cse.google.com/cse.js?cx=dc5cfbd31541cbb99";
+    if (!this.shoppingCartRecipes.length) {
+      searchSection.style.opacity = '0';
+    }
   }
 }
+
