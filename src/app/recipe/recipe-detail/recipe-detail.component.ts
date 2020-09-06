@@ -3,6 +3,7 @@ import { Component, OnInit, Input, ViewChild, OnDestroy, TemplateRef } from '@an
 import { RecipeModel } from '../recipe.model';
 import { ModalService } from '../modal.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -16,7 +17,8 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   sub: any;
 
   constructor(private modalService: ModalService,
-              private ngModalService: BsModalService) {}
+              private ngModalService: BsModalService,
+              private recipeService: RecipeService) {}
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.ngModalService.show(template, {class: 'modal-lg'});
@@ -37,6 +39,11 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
 
   onFavouriteSelected() {
     this.selectedRecipe.favourite = !this.selectedRecipe.favourite;
+    if (this.selectedRecipe.favourite) {
+      this.recipeService.addFavouritedRecipe(this.selectedRecipe);
+    } else {
+      this.recipeService.deleteFavouritedRecipe(this.selectedRecipe);
+    }
   }
 
   onAddToShoppingSelected() {

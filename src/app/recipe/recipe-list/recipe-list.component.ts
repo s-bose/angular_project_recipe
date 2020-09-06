@@ -17,7 +17,7 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipeList = this.recipeService.getRecipes();
-    this.recipeService.NewRecipeAdded
+    this.recipeService.RecipeChanged
     .subscribe((recipe_list: RecipeModel[]) => {
       this.recipeList = recipe_list;
     });
@@ -56,5 +56,8 @@ export class RecipeListComponent implements OnInit {
       console.error(error);
     }
   }
-  
+
+  clearRecipes() {
+    // this.recipeService.clearAll();
+  }
 }

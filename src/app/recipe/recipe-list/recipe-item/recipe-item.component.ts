@@ -19,6 +19,6 @@ export class RecipeItemComponent implements OnInit {
   }
 
   showRecipeDetail() {
-    this.modalService.selectedRecipe.emit(this.recipeInstance);
+    this.modalService.selectedRecipe.next(this.recipeInstance);
   }
 }

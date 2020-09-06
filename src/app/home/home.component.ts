@@ -11,12 +11,16 @@ import { RecipeModel } from '../recipe/recipe.model';
 })
 export class HomeComponent implements OnInit {
   
-  favouriteRecipes: RecipeModel[];
+  favouriteRecipes: RecipeModel[] = [];
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService) {
+  }
 
   ngOnInit(): void {
-    this.favouriteRecipes = this.recipeService.getFavouriteRecipes();
+    this.favouriteRecipes = this.favouriteRecipes.concat(this.recipeService.getFavouriteRecipes());
+    this.recipeService.FavouritesChanged.subscribe(favouriteRecipeList => {
+      this.favouriteRecipes = favouriteRecipeList;
+    })
   }
 
   

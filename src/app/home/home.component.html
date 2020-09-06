@@ -2,8 +2,10 @@
     <div class="jumbotron bg-white">
         <h1 class="display-4">Welcome</h1>
         <p class="lead">Find your favourite recipes here</p>
-        <div class="container-fluid">
-            <div class="list-group" *ngIf="favouriteRecipes.length; else noFav">
+            <div class="card-group justify-content-center">
+                <app-recipe-item *ngFor="let recipeitem of favouriteRecipes" [recipeInstance]="recipeitem"></app-recipe-item>
+            </div>
+            <!-- <div class="list-group" *ngIf="favouriteRecipes.length; else noFav">
                 <a routerLink="/recipes" class="list-group-item list-group-item-action active">
                     Favourite Recipes
                 </a>
@@ -14,10 +16,9 @@
                 <a routerLink="/recipes" class="list-group-item list-group-item-action active">
                     You have not added any favourite yet. Browse the Recipes section to add some...
                 </a>
-            </ng-template>
-        </div>
+            </ng-template> -->
     </div>
-    
+    <app-recipe-detail></app-recipe-detail>
     <router-outlet></router-outlet>
 </div>
 

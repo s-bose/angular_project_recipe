@@ -5,7 +5,7 @@
     <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div [collapse]="isCollapsed" class="collapse navbar-collapse">
+    <div [collapse]="isCollapsed" [isAnimated]="true" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
         <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
         <a class="nav-link" routerLinkActive="active" routerLink="/shopping">Shopping</a>
