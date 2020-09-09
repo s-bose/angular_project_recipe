@@ -1,17 +1,19 @@
-import { EventEmitter } from '@angular/core';
+
+import { Subject } from 'rxjs';
 
 import { RecipeModel } from './recipe.model';
 import { shoppingItemModel } from '../shopping-list/shopping-item.model';
 
-import { Subject } from 'rxjs';
 
 export class RecipeService {
     RecipeChanged = new Subject<RecipeModel[]>();
     FavouritesChanged = new Subject<RecipeModel[]>();
+    ShoppingChanged = new Subject<shoppingItemModel[]>();
 
     private recipeList: RecipeModel[] = []; // serves as the main list to display the searched / randomly generated entries
     private favouritesList: RecipeModel[] = []; // this is the persistant list
-
+    private shoppingList: shoppingItemModel[] = [];
+    // private shoppingList = new Set<shoppingItemModel>();
 
     constructor() {}
     
@@ -26,12 +28,6 @@ export class RecipeService {
 
     getFavouriteRecipes() {
         return this.favouritesList.slice();
-    }
-
-    getShoppingList() {
-        return this.recipeList.filter(item => item.addedToShopping).map(item => {
-            return new shoppingItemModel(item.title, item.ingredients);
-        });
     }
 
     addFavouritedRecipe(recipe: RecipeModel) {
@@ -53,5 +49,26 @@ export class RecipeService {
         let index = this.favouritesList.indexOf(recipe);
         this.favouritesList.splice(index, 1);
         this.FavouritesChanged.next(this.favouritesList);
+    }
+
+    getShoppingList() {
+        console.log(this.shoppingList);
+        return this.shoppingList.slice();
+        // return Array.from(this.shoppingList);
+    }
+
+    addToShoppingList(shoppingItem: shoppingItemModel) {
+        this.shoppingList.push(shoppingItem);
+        this.ShoppingChanged.next(this.shoppingList);
+        // this.shoppingList.add(shoppingItem);
+        // this.ShoppingChanged.next(Array.from(this.shoppingList));
+    }
+
+    deleteFromShoppingList(shoppingItem: shoppingItemModel) {
+        let index = this.shoppingList.indexOf(shoppingItem);
+        this.shoppingList.splice(index, 1);
+        this.ShoppingChanged.next(this.shoppingList);
+        // this.shoppingList.delete(shoppingItem);
+        // this.ShoppingChanged.next(Array.from(this.shoppingList));
     }
 }

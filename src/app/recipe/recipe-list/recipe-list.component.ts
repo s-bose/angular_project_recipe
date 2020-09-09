@@ -20,6 +20,7 @@ export class RecipeListComponent implements OnInit {
     this.recipeService.RecipeChanged
     .subscribe((recipe_list: RecipeModel[]) => {
       this.recipeList = recipe_list;
+      // console.log(this.recipeList);
     });
   }
 
@@ -37,6 +38,8 @@ export class RecipeListComponent implements OnInit {
         
       });
       let meal_info: any = recipeObject.meals[0];
+
+      let id = parseInt(meal_info['idMeal']);
       let title = meal_info['strMeal'];
       let body = meal_info['strInstructions'];
       let category = meal_info['strCategory'];
@@ -49,7 +52,7 @@ export class RecipeListComponent implements OnInit {
           ingredients.push({'name': meal_info['strIngredient' + i], 'measure': meal_info['strMeasure' + i]});
         }        
       }
-      let recipe = new RecipeModel(title, body, category, area, thumbnail, link, ingredients);
+      let recipe = new RecipeModel(id, title, body, category, area, thumbnail, link, ingredients);
       return new Promise<RecipeModel>((resolve, reject) => {resolve(recipe)});
     }
     catch(error) {

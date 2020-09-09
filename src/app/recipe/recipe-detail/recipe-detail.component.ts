@@ -4,6 +4,7 @@ import { RecipeModel } from '../recipe.model';
 import { ModalService } from '../modal.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { RecipeService } from '../recipe.service';
+import { shoppingItemModel } from 'src/app/shopping-list/shopping-item.model';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -48,5 +49,11 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
 
   onAddToShoppingSelected() {
     this.selectedRecipe.addedToShopping = !this.selectedRecipe.addedToShopping;
+    let shoppingItem: shoppingItemModel = new shoppingItemModel(this.selectedRecipe.id, this.selectedRecipe.title, this.selectedRecipe.ingredients);
+    if (this.selectedRecipe.addedToShopping) {
+      this.recipeService.addToShoppingList(shoppingItem);
+    } else {
+      this.recipeService.deleteFromShoppingList(shoppingItem);
+    }
   }
 }

@@ -1,4 +1,5 @@
 export class RecipeModel {
+    id: number;
     title: string;
     body: string;
     category: string;
@@ -12,7 +13,8 @@ export class RecipeModel {
     favourite: boolean;
     addedToShopping: boolean;
 
-    constructor(title, body, category, area, thumbnail, link, ingredients, favourite = false, addedToShopping = false) {
+    constructor(id, title, body, category, area, thumbnail, link, ingredients, favourite = false, addedToShopping = false) {
+        this.id = id;
         this.title = title;
         this.body = body;
         this.category = category;
