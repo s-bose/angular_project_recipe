@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeModel } from '../recipe.model';
-import { RecipeService } from '../recipe.service';
-import { AxiosService } from 'src/app/axios/axios.service';
+import { RecipeModel } from '../../../shared/models/recipe.model';
+import { RecipeService } from '../../../services/recipe.service';
+import { AxiosService } from '../../../shared/axios/axios.service';
 
 @Component({
   selector: 'app-recipe-list',

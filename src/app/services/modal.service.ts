@@ -1,5 +1,5 @@
-import { RecipeModel } from './recipe.model'
-import { Injectable, EventEmitter } from '@angular/core';
+import { RecipeModel } from '../shared/models/recipe.model'
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Injectable()

@@ -1,8 +1,8 @@
 
 import { Subject } from 'rxjs';
 
-import { RecipeModel } from './recipe.model';
-import { shoppingItemModel } from '../shopping-list/shopping-item.model';
+import { RecipeModel } from '../shared/models/recipe.model';
+import { shoppingItemModel } from '../shared/models/shopping-item.model';
 
 
 export class RecipeService {
