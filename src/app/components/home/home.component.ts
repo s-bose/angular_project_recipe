@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RecipeService } from '../../services/recipe.service';
-import { RecipeModel } from '../../shared/models/recipe.model';
+import { RecipeModel } from '../../models/recipe.model';
 
 
 @Component({
@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
     this.recipeService.FavouritesChanged.subscribe(favouriteRecipeList => {
       this.favouriteRecipes = favouriteRecipeList;
     })
+    
   }
 
   

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api.service';
+
+import { recipeQuery } from '../../models/recipe-query.interface';
 
 @Component({
   selector: 'app-recipe',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
   providers: []
 })
 export class RecipeComponent implements OnInit {
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {  
+    this.apiService.RecipesByFilter({mainIngredient: 'beef'})
+    .then((resolve) => {
+        console.log(resolve);
+    });
   }
 
 

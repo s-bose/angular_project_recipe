@@ -25,9 +25,10 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 // services
-import { AxiosService } from './shared/axios/axios.service';
+import { AxiosService } from './services/axios.service';
 import { RecipeService } from './services/recipe.service';
 import { ModalService } from './services/modal.service';
+import { ApiService } from './services/api.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ModalService } from './services/modal.service';
   providers: [
     AxiosService, 
     RecipeService,
-    ModalService
+    ModalService,
+    ApiService
   ],
   bootstrap: [AppComponent]
 })

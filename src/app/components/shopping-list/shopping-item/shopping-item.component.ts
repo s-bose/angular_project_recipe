@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { shoppingItemModel } from '../../../shared/models/shopping-item.model';
+import { shoppingItemModel } from '../../../models/shopping-item.model';
 @Component({
   selector: 'app-shopping-item',
   templateUrl: './shopping-item.component.html',

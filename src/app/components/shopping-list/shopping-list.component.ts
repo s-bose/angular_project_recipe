@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../../services/recipe.service';
-import { shoppingItemModel } from '../../shared/models/shopping-item.model';
+import { shoppingItemModel } from '../../models/shopping-item.model';
 
 @Component({
   selector: 'app-shopping-list',

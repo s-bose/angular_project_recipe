@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy, TemplateRef } from '@angular/core';
 
-import { RecipeModel } from '../../../shared/models/recipe.model';
+import { RecipeModel } from '../../../models/recipe.model';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { RecipeService } from '../../../services/recipe.service';
 import { ModalService } from '../../../services/modal.service';
-import { shoppingItemModel } from '../../../shared/models/shopping-item.model';
+import { shoppingItemModel } from '../../../models/shopping-item.model';
 
 @Component({
   selector: 'app-recipe-detail',
