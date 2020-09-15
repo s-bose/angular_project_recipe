@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RecipeModel } from '../../recipe.model';
-import { ModalService } from '../../modal.service';
+import { RecipeModel } from '../../../../models/recipe.model';
+import { ModalService } from '../../../../services/modal.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -19,6 +19,8 @@ export class RecipeItemComponent implements OnInit {
   }
 
   showRecipeDetail() {
-    this.modalService.selectedRecipe.emit(this.recipeInstance);
+    this.modalService.selectedRecipe.next(this.recipeInstance);
   }
+
+  dummygetRecipeById() {}
 }

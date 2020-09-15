@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeService } from '../recipe/recipe.service';
-import { shoppingItemModel } from './shopping-item.model';
+import { RecipeService } from '../../services/recipe.service';
+import { shoppingItemModel } from '../../models/shopping-item.model';
 
 @Component({
   selector: 'app-shopping-list',
@@ -13,7 +13,10 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.shoppingCartRecipes = this.recipeService.getShoppingList();
-
+    this.recipeService.ShoppingChanged
+    .subscribe(shoppingList => {
+      this.shoppingCartRecipes = shoppingList;
+    })
     let searchSection = document.getElementById('searchSection');
     searchSection.appendChild(document.createElement('script')).src = "https://cse.google.com/cse.js?cx=dc5cfbd31541cbb99";
     if (!this.shoppingCartRecipes.length) {
