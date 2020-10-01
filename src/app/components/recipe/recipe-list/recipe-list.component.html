@@ -1,12 +1,47 @@
+<div class="jumbotron text-center">
+  <h1 class="display-4">Search your recipes</h1>
+  <div class="row">
+    <div class="col-lg-12 card-margin">
+      <div class="card search-form">
+        <div class="card-body p-0">
+          <form id="search-form" (keydown.enter)="$event.preventDefault()">
+            <div class="row">
+              <div class="col-12">
+                <div class="row no-gutters">
+                  <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                    <input type="text" placeholder="Search..." class="form-control" id="search" name="search">
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                    <select class="form-control" id="queryTypeSelect">
+                      <option value="">Category</option>
+                      <option value="">Area</option>
+                      <option value="">Main Ingredient</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                    <button type="button" class="btn btn-base">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-search">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br>
+      <a class="btn btn-outline-danger rounded-pill btn-random" (click)="getRandomRecipe()">
+        <span class="fas fa-dice"></span>&nbsp;Get Random Recipe</a>
 
-<div class="jumbotron">
-    <h1 class="display-4">Manage your recipes here</h1>
-    <p class="lead">You currenly have {{recipeList.length}} recipes in your inventory</p>
-    <hr class="my-4">
-    <a class="btn btn-danger" (click)="getRandomRecipe()">Get Random Recipe</a>
+    </div>
+  </div>
 </div>
 
 <div class="card-group justify-content-center">
-    <app-recipe-item *ngFor="let recipeitem of recipeList" [recipeInstance]="recipeitem"></app-recipe-item>
+  <app-recipe-item *ngFor="let recipeitem of recipeList" [recipeInstance]="recipeitem"></app-recipe-item>
 </div>
-

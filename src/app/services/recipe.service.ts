@@ -11,7 +11,7 @@ export class RecipeService {
     ShoppingChanged = new Subject<shoppingItemModel[]>();
 
     private recipeList: RecipeModel[] = []; // serves as the main list to display the searched / randomly generated entries
-    private favouritesList: RecipeModel[] = []; // this is the persistant list
+    private favouritesList: RecipeModel[] = []; // this is the persistent list
     private shoppingList: shoppingItemModel[] = [];
     // private shoppingList = new Set<shoppingItemModel>();
 

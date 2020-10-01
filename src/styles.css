@@ -2,3 +2,8 @@
 body {
     font-family: 'Kumbh Sans', sans-serif;
 }
+
+input, select, button {
+    outline: none;
+    box-shadow:none !important;
+  }

@@ -13,7 +13,7 @@ export class RecipeComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {  
-    this.apiService.RecipesByFilter({mainIngredient: 'beef'})
+    this.apiService.RecipesByFilter({area: 'seafood'})
     .then((resolve) => {
         console.log(resolve);
     });

@@ -56,22 +56,26 @@ export class ApiService {
                     i: query.mainIngredient,
                 }
             });
-            list = list.meals.map((elem) => {
-                return parseInt(elem['idMeal']);
-            });
-            return await Promise.all(list.map(async (id) => {
-                return await this.axios.get<any>({
-                    url: this.urlById,
-                    params: {
-                        i: id,
-                    }
+            if (list.meals) {
+                list = list.meals.map((elem) => {
+                    return parseInt(elem['idMeal']);
                 });
-            })).then(list => {
-                let recipeList: RecipeModel[] = list.map((item: any) => {
-                    return this.parseMeal(item.meals[0]);
-                })
-                return recipeList;
-            });
+                return await Promise.all(list.map(async (id) => {
+                    return await this.axios.get<any>({
+                        url: this.urlById,
+                        params: {
+                            i: id,
+                        }
+                    });
+                })).then(list => {
+                    let recipeList: RecipeModel[] = list.map((item: any) => {
+                        return this.parseMeal(item.meals[0]);
+                    })
+                    return recipeList;
+                });
+            } else {
+                return [];
+            }
         }
         catch(err) {
             console.error(err);
