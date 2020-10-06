@@ -21,10 +21,13 @@ export class RecipeService {
         return this.recipeList.slice();
     }
 
-    addRecipes(recipeItem: RecipeModel): void {
+    addRecipes(recipeItem: RecipeModel, listView: boolean = false): void {
+        if (!listView) {
+            this.recipeList = [];
+        }
         this.recipeList.push(recipeItem);
         this.RecipeChanged.next(this.recipeList);
-    }    
+    }
 
     getFavouriteRecipes() {
         return this.favouritesList.slice();
@@ -32,20 +35,23 @@ export class RecipeService {
 
     addFavouritedRecipe(recipe: RecipeModel) {
         // adds the favourited recipe into the favouriesList array and removes it from recipeList
+
         let recipeCopy: RecipeModel = Object.assign({}, recipe);    // copy the recipe object to disconnect shared reference
-        this.favouritesList.push(recipeCopy);   // push to the favourites List
+        this.favouritesList.push(recipeCopy);                       // push to the favourites List
         let index =  this.recipeList.indexOf(recipe);
-        this.recipeList.splice(index, 1);   // remove the item from the main list
-        // console.log(this.favouritesList);
+        this.recipeList.splice(index, 1);                           // remove the item from the main list
         this.FavouritesChanged.next(this.favouritesList);
         this.RecipeChanged.next(this.recipeList);
 
     }
 
     deleteFavouritedRecipe(recipe: RecipeModel) {
-        // removes the recipe if clicked on unfavourite
-        // will be removed from the favouritesList since it is already removed from the recipeList
-
+        /*
+         * removes the recipe if clicked on unfavourite
+         * will be removed from the favouritesList since 
+         * it is already removed from the recipeList
+        */
+       
         let index = this.favouritesList.indexOf(recipe);
         this.favouritesList.splice(index, 1);
         this.FavouritesChanged.next(this.favouritesList);

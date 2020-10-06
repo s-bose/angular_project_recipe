@@ -3,13 +3,16 @@ import { AxiosService } from './axios.service';
 import { RecipeModel } from '../models/recipe.model';
 import { Injectable } from '@angular/core';
 
-import { recipeQuery } from '../models/recipe-query.interface';
+import { recipeQueryInterface } from '../models/recipe-query.interface';
 
 @Injectable()
 export class ApiService {
-    urlRandom: string = 'https://www.themealdb.com/api/json/v1/1/random.php';
-    urlById: string = 'https://www.themealdb.com/api/json/v1/1/lookup.php'; // query ?i=id
-    urlFilter: string = 'https://www.themealdb.com/api/json/v1/1/filter.php'; // query c = category a = area i = ingredients
+    urlRandom: string = 'https://www.themealdb.com/api/json/v1/1/random.php';   //  random recipe
+    urlById: string = 'https://www.themealdb.com/api/json/v1/1/lookup.php';     // query ?i=id
+    urlFilter: string = 'https://www.themealdb.com/api/json/v1/1/filter.php';   // query c = category 
+                                                                                //       a = area 
+                                                                                //       i = ingredients
+
 
     constructor(private axios: AxiosService) {}
 
@@ -35,7 +38,6 @@ export class ApiService {
         try {
           let recipeObject = await this.axios.get<any>({
             url: this.urlRandom,
-            
           });
           let meals: any = recipeObject.meals.map(this.parseMeal);
           
@@ -46,7 +48,7 @@ export class ApiService {
         }
     }
 
-    async RecipesByFilter(query: recipeQuery) {
+    async RecipesByFilter(query: recipeQueryInterface) {
         try {
             let list = await this.axios.get<any>({
                 url: this.urlFilter,

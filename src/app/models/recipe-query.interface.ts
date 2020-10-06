@@ -1,4 +1,4 @@
-export interface recipeQuery {
+export class recipeQueryInterface {
     category ?: string;
     area ?: string;
     mainIngredient ?: string;
