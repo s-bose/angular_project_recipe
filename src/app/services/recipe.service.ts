@@ -21,14 +21,16 @@ export class RecipeService {
         return this.recipeList.slice();
     }
 
-    addRecipes(recipeItem: RecipeModel, listView: boolean = false): void {
-        if (!listView) {
-            this.recipeList = [];
-        }
+    addRecipes(recipeItem: RecipeModel): void {
         this.recipeList.push(recipeItem);
         this.RecipeChanged.next(this.recipeList);
     }
 
+    clearSearch(): void {
+        this.recipeList = [];
+        this.RecipeChanged.next(this.recipeList);
+    }
+    
     getFavouriteRecipes() {
         return this.favouritesList.slice();
     }

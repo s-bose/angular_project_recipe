@@ -43,6 +43,7 @@ export class RecipeListComponent implements OnInit {
   getRandomRecipe(): void {
     this.apiService.RandomRecipe()
     .then(recipe => {
+      this.recipeService.clearSearch();
       this.recipeService.addRecipes(recipe);
       // this.recipeService.addRecipes(recipe);
     })
@@ -56,8 +57,9 @@ export class RecipeListComponent implements OnInit {
     // console.log(query);
     this.apiService.RecipesByFilter(query)
     .then(lists => {
+      this.recipeService.clearSearch();
       lists.forEach(elem => {
-        this.recipeService.addRecipes(elem, true);
+        this.recipeService.addRecipes(elem);
       })
     })
   }
