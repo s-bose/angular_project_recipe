@@ -12,7 +12,22 @@
   .search-form {
     width: 80%;
     margin: 0 auto;
-    margin-top: 1rem;
+    margin-top: 0;
+  }
+
+  .search-form-anim {
+    animation: 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-name: fill-search-x;
+  }
+
+  @keyframes fill-search-x {
+    0% {
+      width: 80%;
+    }
+    100% {
+      width: 100%;
+    }
   }
   
   .search-form input {
@@ -82,3 +97,8 @@
       border: 0;
   }
 
+  .search-bar-top {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+  }

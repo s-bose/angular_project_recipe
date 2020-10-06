@@ -30,6 +30,7 @@ import { AxiosService } from './services/axios.service';
 import { RecipeService } from './services/recipe.service';
 import { ModalService } from './services/modal.service';
 import { ApiService } from './services/api.service';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ApiService } from './services/api.service';
     PageNotFoundComponent,
     HomeComponent,
     SafeUrlPipe,
-    ShoppingItemComponent
+    ShoppingItemComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ import { RecipeService } from '../../../services/recipe.service';
 import { ApiService } from '../../../services/api.service';
 
 
-import { recipeQueryInterface } from '../../../models/recipe-query.interface';
+import { recipeQueryInterface } from '../../../models/recipe-query.model';
 
 @Component({
   selector: 'app-recipe-list',
@@ -33,6 +33,20 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // var scrollpos = window.scrollY; // window scroll position
+    var wh = window.innerHeight-50; // as soon as element touches bottom with offset event starts
+    var searchParent: HTMLElement = document.querySelector(".search-bar-top"); //element
+    var searchBarForm: HTMLElement = document.querySelector(".search-form");
+    window.addEventListener('scroll', function(){ 
+        var scrollpos = window.scrollY;
+        if (scrollpos >= searchParent.offsetTop) {
+          searchBarForm.classList.add("search-form-anim"); 
+        }
+        else {
+          searchBarForm.classList.remove("search-form-anim");
+        }
+    });
+
     this.recipeList = this.recipeService.getRecipes();
     this.recipeService.RecipeChanged
     .subscribe((recipe_list: RecipeModel[]) => {
@@ -50,8 +64,6 @@ export class RecipeListComponent implements OnInit {
   }
 
   fetchRecipesFromSearch(): void {
-    // this.apiService.RecipesByFilter(); // TODO: recipeFilter impl the interface
-    // console.log(this.searchItem, this.queryType);
     let query : recipeQueryInterface = new recipeQueryInterface;
     query[this.queryType] = this.searchItem;
     // console.log(query);

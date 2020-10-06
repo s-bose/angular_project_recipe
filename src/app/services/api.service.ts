@@ -3,7 +3,7 @@ import { AxiosService } from './axios.service';
 import { RecipeModel } from '../models/recipe.model';
 import { Injectable } from '@angular/core';
 
-import { recipeQueryInterface } from '../models/recipe-query.interface';
+import { recipeQueryInterface } from '../models/recipe-query.model';
 
 @Injectable()
 export class ApiService {
