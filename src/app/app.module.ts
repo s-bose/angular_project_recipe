@@ -1,8 +1,10 @@
+// angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
+// shared & routing
 import { SharedModule } from './shared.module';
 import { AppRoutingModule } from './app-routing.module';
 

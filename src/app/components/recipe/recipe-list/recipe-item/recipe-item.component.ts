@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { RecipeModel } from '../../../../models/recipe.model';
 import { ModalService } from '../../../../services/modal.service';
 import { ApiService } from "../../../../services/api.service";
@@ -30,6 +31,11 @@ export class RecipeItemComponent implements OnInit {
   }
 
   fetchRecipesFromTag(tag: Tags, value: string): void {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
     let query: recipeQueryInterface = new recipeQueryInterface();
     query[Tags[tag]] = value;
     // console.log(query);

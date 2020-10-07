@@ -40,12 +40,11 @@
     <br />
     <div class="body-tags">
       <h5><span class="fas fa-tag fa-fw"></span>&nbsp; Tags</h5>
-      <p class="btn btn-outline-info">{{selectedRecipe.category}}</p>
-      <p class="btn btn-outline-success ml-3">{{selectedRecipe.area}}</p>
+      <p (click)="onTagSelected(0, $event.target.innerText)" class="btn btn-outline-info">{{selectedRecipe.category}}</p>
+      <p (click)="onTagSelected(1, $event.target.innerText)" class="btn btn-outline-success ml-3">{{selectedRecipe.area}}</p>
     </div>
   </div>
   <div class="modal-footer">
-    <!-- <button type="button" class="btn btn-dark" (click)="modalRef.hide()">Ok</button> -->
     <button type="button" class="btn"
       [ngClass]="{'btn-danger': selectedRecipe.favourite, 'btn-info': !selectedRecipe.favourite}"
       (click)="onFavouriteSelected()">

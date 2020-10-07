@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewChild, ElementRef } from '@angular/core';
+
 import { RecipeModel } from '../../../models/recipe.model';
 import { RecipeService } from '../../../services/recipe.service';
 import { ApiService } from '../../../services/api.service';
@@ -14,9 +16,11 @@ import { recipeQueryInterface } from '../../../models/recipe-query.model';
 
 export class RecipeListComponent implements OnInit {
   public recipeList: RecipeModel[] = [];
-  
   public searchItem: string;
   public queryType: string;
+
+  @ViewChild('searchTop') searchParentRef: ElementRef;
+  @ViewChild('searchForm') searchBarForm: ElementRef;
   
   public types: Array<Object> = 
   [
@@ -33,17 +37,15 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // var scrollpos = window.scrollY; // window scroll position
-    var wh = window.innerHeight-50; // as soon as element touches bottom with offset event starts
-    var searchParent: HTMLElement = document.querySelector(".search-bar-top"); //element
-    var searchBarForm: HTMLElement = document.querySelector(".search-form");
-    window.addEventListener('scroll', function(){ 
+    // var searchParent: HTMLElement = document.querySelector(".search-bar-top"); //element
+    // var searchBarForm: HTMLElement = document.querySelector(".search-form");
+    window.addEventListener('scroll', () => { 
         var scrollpos = window.scrollY;
-        if (scrollpos >= searchParent.offsetTop) {
-          searchBarForm.classList.add("search-form-anim"); 
+        if (scrollpos >= this.searchParentRef.nativeElement.offsetTop) {
+          this.searchBarForm.nativeElement.classList.add("search-form-anim"); 
         }
         else {
-          searchBarForm.classList.remove("search-form-anim");
+          this.searchBarForm.nativeElement.classList.remove("search-form-anim");
         }
     });
 
@@ -64,6 +66,12 @@ export class RecipeListComponent implements OnInit {
   }
 
   fetchRecipesFromSearch(): void {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+
     let query : recipeQueryInterface = new recipeQueryInterface;
     query[this.queryType] = this.searchItem;
     // console.log(query);

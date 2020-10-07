@@ -6,6 +6,9 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { RecipeService } from '../../../services/recipe.service';
 import { ModalService } from '../../../services/modal.service';
 import { shoppingItemModel } from '../../../models/shopping-item.model';
+import { ApiService } from '../../../services/api.service';
+
+import { Tags, recipeQueryInterface } from '../../../models/recipe-query.model';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -20,7 +23,8 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
 
   constructor(private modalService: ModalService,
               private ngModalService: BsModalService,
-              private recipeService: RecipeService) {}
+              private recipeService: RecipeService,
+              private apiService: ApiService) {}
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.ngModalService.show(template, {class: 'modal-lg'});
@@ -56,5 +60,26 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
     } else {
       this.recipeService.deleteFromShoppingList(shoppingItem);
     }
+  }
+
+  onTagSelected(tag: Tags, value: string): void {
+    this.modalRef.hide();
+
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+
+    let query : recipeQueryInterface = new recipeQueryInterface;
+    query[Tags[tag]] = value;
+    console.log(query);
+    this.apiService.RecipesByFilter(query)
+    .then(lists => {
+      this.recipeService.clearSearch();
+      lists.forEach(elem => {
+        this.recipeService.addRecipes(elem);
+      })
+    })
   }
 }
