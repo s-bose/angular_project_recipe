@@ -6,7 +6,7 @@ import { RecipeService } from '../../../services/recipe.service';
 import { ApiService } from '../../../services/api.service';
 
 
-import { recipeQueryInterface } from '../../../models/recipe-query.model';
+import { recipeQueryModel } from '../../../models/recipe-query.model';
 
 @Component({
   selector: 'app-recipe-list',
@@ -37,8 +37,8 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // var searchParent: HTMLElement = document.querySelector(".search-bar-top"); //element
-    // var searchBarForm: HTMLElement = document.querySelector(".search-form");
+    // ? this part enables the animation which expands the search bar on page scroll
+
     window.addEventListener('scroll', () => { 
         var scrollpos = window.scrollY;
         if (scrollpos >= this.searchParentRef.nativeElement.offsetTop) {
@@ -49,6 +49,7 @@ export class RecipeListComponent implements OnInit {
         }
     });
 
+    // ? sync local recipeList with service recipeList via subscription
     this.recipeList = this.recipeService.getRecipes();
     this.recipeService.RecipeChanged
     .subscribe((recipe_list: RecipeModel[]) => {
@@ -56,31 +57,21 @@ export class RecipeListComponent implements OnInit {
     });
   }
 
-  getRandomRecipe(): void {
-    this.apiService.RandomRecipe()
-    .then(recipe => {
-      this.recipeService.clearSearch();
-      this.recipeService.addRecipes(recipe);
-      // this.recipeService.addRecipes(recipe);
-    })
-  }
+  // ? SECTION handler for the getters in the apiService
 
-  fetchRecipesFromSearch(): void {
+  getRandomRecipe(): void {
+    this.apiService.getRandomRecipe();
+  }
+  
+  getRecipesFromSearch(): void {
     window.scroll({
       top: 0,
       left: 0,
       behavior: 'smooth',
     });
 
-    let query : recipeQueryInterface = new recipeQueryInterface;
+    let query : recipeQueryModel = new recipeQueryModel;
     query[this.queryType] = this.searchItem;
-    // console.log(query);
-    this.apiService.RecipesByFilter(query)
-    .then(lists => {
-      this.recipeService.clearSearch();
-      lists.forEach(elem => {
-        this.recipeService.addRecipes(elem);
-      })
-    })
+    this.apiService.getFilteredRecipes(query);
   }
 }

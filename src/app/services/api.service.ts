@@ -1,22 +1,25 @@
 import { AxiosService } from './axios.service';
-
+import { RecipeService } from './recipe.service';
 import { RecipeModel } from '../models/recipe.model';
 import { Injectable } from '@angular/core';
 
-import { recipeQueryInterface } from '../models/recipe-query.model';
+import { recipeQueryModel } from '../models/recipe-query.model';
 
 @Injectable()
 export class ApiService {
-    urlRandom: string = 'https://www.themealdb.com/api/json/v1/1/random.php';   //  random recipe
-    urlById: string = 'https://www.themealdb.com/api/json/v1/1/lookup.php';     // query ?i=id
-    urlFilter: string = 'https://www.themealdb.com/api/json/v1/1/filter.php';   // query c = category 
+    private urlRandom: string = 'https://www.themealdb.com/api/json/v1/1/random.php';   //  random recipe
+    private urlById: string = 'https://www.themealdb.com/api/json/v1/1/lookup.php';     // query ?i=id
+    private urlFilter: string = 'https://www.themealdb.com/api/json/v1/1/filter.php';   // query c = category 
                                                                                 //       a = area 
                                                                                 //       i = ingredients
 
+    constructor(
+        private axios: AxiosService,
+        private recipeService: RecipeService) {}
 
-    constructor(private axios: AxiosService) {}
+    // parse the json response into RecipeModel object
+    private parseMeal(meal_info: any): RecipeModel {
 
-    parseMeal(meal_info: any): RecipeModel {
         let id = parseInt(meal_info['idMeal']);
         let title = meal_info['strMeal'];
         let body = meal_info['strInstructions'];
@@ -34,6 +37,7 @@ export class ApiService {
         return recipe;
     }
 
+    // get a random recipe
     async RandomRecipe(): Promise<RecipeModel> {
         try {
           let recipeObject = await this.axios.get<any>({
@@ -48,7 +52,17 @@ export class ApiService {
         }
     }
 
-    async RecipesByFilter(query: recipeQueryInterface) {
+    // wrapper for async randomrecipe
+    getRandomRecipe(): void {
+        this.RandomRecipe()
+        .then(recipe => {
+            this.recipeService.clearSearch();
+            this.recipeService.addRecipes(recipe);
+        })
+    }
+
+    // get a list of recipes by search filter (category, area, main ingredient)
+    async RecipesByFilter(query: recipeQueryModel) {
         try {
             let list = await this.axios.get<any>({
                 url: this.urlFilter,
@@ -84,4 +98,12 @@ export class ApiService {
         }
     }
 
+    // wrapper for async recipesbyfilter
+    getFilteredRecipes(query: recipeQueryModel): void {
+        this.RecipesByFilter(query)
+        .then(list => {
+            this.recipeService.clearSearch();
+            this.recipeService.addMultipleRecipe(list);
+        })
+    }
 }

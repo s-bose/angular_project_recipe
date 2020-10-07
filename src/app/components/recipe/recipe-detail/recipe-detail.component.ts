@@ -8,7 +8,7 @@ import { ModalService } from '../../../services/modal.service';
 import { shoppingItemModel } from '../../../models/shopping-item.model';
 import { ApiService } from '../../../services/api.service';
 
-import { Tags, recipeQueryInterface } from '../../../models/recipe-query.model';
+import { Tags, recipeQueryModel } from '../../../models/recipe-query.model';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -71,15 +71,10 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
       behavior: 'smooth',
     });
 
-    let query : recipeQueryInterface = new recipeQueryInterface;
+    let query : recipeQueryModel = new recipeQueryModel;
     query[Tags[tag]] = value;
     console.log(query);
-    this.apiService.RecipesByFilter(query)
-    .then(lists => {
-      this.recipeService.clearSearch();
-      lists.forEach(elem => {
-        this.recipeService.addRecipes(elem);
-      })
-    })
+    this.apiService.getFilteredRecipes(query);
+    this.apiService.RecipesByFilter(query);
   }
 }

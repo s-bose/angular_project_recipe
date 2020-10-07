@@ -1,19 +1,19 @@
 <nav class="navbar container-fluid navbar-expand-lg navbar-light bg-white">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="assets/undraw_breakfast.svg" alt="logo" style="width: 50px; height: auto;">
-    </a>
-    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div [collapse]="isCollapsed" [isAnimated]="true" class="collapse navbar-collapse">
-      <ul class="navbar-nav mr-auto">
-        <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
-        <a class="nav-link" routerLinkActive="active" routerLink="/shopping">Shopping</a>
-        <a class="nav-link" routerLinkActive="active" routerLink="/recipes">Recipes</a>
-      </ul>
-    </div>
+
+  <a class="navbar-brand" href="#">
+    <img src="assets/undraw_breakfast.svg" alt="logo" style="width: 50px; height: auto;">
+  </a>
+  <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div [collapse]="isCollapsed" [isAnimated]="true" class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <a class="nav-link" routerLinkActive="active" routerLink="/home">Home</a>
+      <a class="nav-link" routerLinkActive="active" routerLink="/shopping">Shopping</a>
+      <a class="nav-link" routerLinkActive="active" routerLink="/recipes">Recipes</a>
+    </ul>
   </div>
+
 </nav>
 
 <router-outlet></router-outlet>

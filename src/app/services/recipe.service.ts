@@ -17,6 +17,7 @@ export class RecipeService {
 
     constructor() {}
     
+    // ! SECTION RECIPES
     getRecipes(): RecipeModel[] {
         return this.recipeList.slice();
     }
@@ -26,11 +27,18 @@ export class RecipeService {
         this.RecipeChanged.next(this.recipeList);
     }
 
+    addMultipleRecipe(list: RecipeModel[]): void {
+        this.recipeList = this.recipeList.concat(list);
+        this.RecipeChanged.next(this.recipeList);
+    }
+
     clearSearch(): void {
         this.recipeList = [];
         this.RecipeChanged.next(this.recipeList);
     }
     
+
+    // ! SECTION FAVOURITES
     getFavouriteRecipes() {
         return this.favouritesList.slice();
     }
@@ -59,6 +67,8 @@ export class RecipeService {
         this.FavouritesChanged.next(this.favouritesList);
     }
 
+
+    // ! SECTION SHOPPING LIST
     getShoppingList() {
         console.log(this.shoppingList);
         return this.shoppingList.slice();

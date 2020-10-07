@@ -34,8 +34,7 @@ export class AxiosService {
     }
 
 
-    // I have no fucking idea why Angular does not directly support Axios
-    // Axios already has support for TS.
+
     // https://github.com/axios/axios/blob/v0.19.0/index.d.ts
     // get<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R>;
     // for more info visit: https://levelup.gitconnected.com/a-typescript-safe-api-82cc22c4f92d

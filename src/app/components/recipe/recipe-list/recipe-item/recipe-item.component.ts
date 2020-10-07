@@ -3,8 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RecipeModel } from '../../../../models/recipe.model';
 import { ModalService } from '../../../../services/modal.service';
 import { ApiService } from "../../../../services/api.service";
-import { RecipeService } from "../../../../services/recipe.service";
-import { Tags, recipeQueryInterface } from "../../../../models/recipe-query.model";
+import { Tags, recipeQueryModel } from "../../../../models/recipe-query.model";
 
 @Component({
   selector: 'app-recipe-item',
@@ -18,8 +17,7 @@ export class RecipeItemComponent implements OnInit {
   cardText: string;
   constructor(
     private modalService: ModalService,
-    private apiService: ApiService,
-    private recipeService: RecipeService) { }
+    private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.cardText = this.recipeInstance.ingredients.slice(0, 3).map(elem => elem.name).join(', ');
@@ -30,21 +28,15 @@ export class RecipeItemComponent implements OnInit {
     this.modalService.selectedRecipe.next(this.recipeInstance);
   }
 
+  // ? search wrt the clicked tag
   fetchRecipesFromTag(tag: Tags, value: string): void {
     window.scroll({
       top: 0,
       left: 0,
       behavior: 'smooth',
     });
-    let query: recipeQueryInterface = new recipeQueryInterface();
+    let query: recipeQueryModel = new recipeQueryModel();
     query[Tags[tag]] = value;
-    // console.log(query);
-    this.apiService.RecipesByFilter(query)
-    .then(lists => {
-      this.recipeService.clearSearch();
-      lists.forEach(elem => {
-        this.recipeService.addRecipes(elem);
-      })
-    })
+    this.apiService.getFilteredRecipes(query);
   }
 }
