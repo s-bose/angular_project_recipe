@@ -4,6 +4,7 @@
     border-radius: 0.5em;
     width: 25rem;
     height: auto;
+    align-self: center;
     /* height: 40rem; */
 }
 

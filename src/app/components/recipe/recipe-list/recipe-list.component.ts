@@ -42,10 +42,10 @@ export class RecipeListComponent implements OnInit {
     window.addEventListener('scroll', () => { 
         var scrollpos = window.scrollY;
         if (scrollpos >= this.searchParentRef.nativeElement.offsetTop) {
-          this.searchBarForm.nativeElement.classList.add("search-form-anim"); 
+          this.searchBarForm.nativeElement.classList.add("col-12"); 
         }
         else {
-          this.searchBarForm.nativeElement.classList.remove("search-form-anim");
+          this.searchBarForm.nativeElement.classList.remove("col-12");
         }
     });
 

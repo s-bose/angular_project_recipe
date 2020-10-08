@@ -1,34 +1,38 @@
-.jumbotron {
-    background-color: white;
-    margin-bottom: 5%;
-    padding-bottom: 0;
-    margin-bottom: 2em;
-}
+  .jumbotron {
+      background-color: white;
+      margin-bottom: 5%;
+      padding-bottom: 0;
+      margin-bottom: 2em;
+  }
+
+  .btn-search:hover {
+    color: red;
+  }
 
   .btn-random {
     box-shadow: 0px 5px 10px -5px black;
   }
   
   .search-form {
-    width: 80%;
     margin: 0 auto;
     margin-top: 0;
   }
 
-  .search-form-anim {
-    animation: 0.3s ease-in-out;
-    animation-fill-mode: forwards;
-    animation-name: fill-search-x;
+  /* bootstrap */
+
+  
+  .col-10 {
+    flex-grow: 1;
+    transition: all 400ms ease-in-out;
   }
 
-  @keyframes fill-search-x {
-    0% {
-      width: 80%;
-    }
-    100% {
-      width: 100%;
-    }
+  .col-12 {
+    flex-shrink: 1;
+    transition: all 400ms ease-in-out;
   }
+
+  /* bootstrap */
+
   
   .search-form input {
     height: 100%;
@@ -65,10 +69,6 @@
   }
   
   
-  .card-margin {
-      margin-bottom: 1.875rem;
-  }
-  
   @media (min-width: 992px){
   .col-lg-2 {
       flex: 0 0 16.66667%;
@@ -78,7 +78,9 @@
   
   .card-margin {
       margin-bottom: 1.875rem;
+      justify-content: center;
   }
+
   .card {
       border: 0;
       box-shadow: 0px 25px 15px -24px;
