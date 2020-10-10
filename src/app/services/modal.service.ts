@@ -7,5 +7,7 @@ export class ModalService {
     // selectedRecipe = new Subject<RecipeModel>();
     selectedRecipe = new Subject<RecipeModel>();
     
+    categoriesList = new Subject<any>();
+    
     constructor() {}
 }

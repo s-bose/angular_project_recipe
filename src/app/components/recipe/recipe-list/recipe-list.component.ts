@@ -4,9 +4,11 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { RecipeModel } from '../../../models/recipe.model';
 import { RecipeService } from '../../../services/recipe.service';
 import { ApiService } from '../../../services/api.service';
-
+import { ModalService } from '../../../services/modal.service';
 
 import { recipeQueryModel } from '../../../models/recipe-query.model';
+
+
 
 @Component({
   selector: 'app-recipe-list',
@@ -34,7 +36,8 @@ export class RecipeListComponent implements OnInit {
 
   constructor(
     private recipeService: RecipeService, 
-    private apiService: ApiService) { 
+    private apiService: ApiService,
+    private modalService: ModalService) { 
       this.queryType = this.types[0]["value"];
   }
 
@@ -79,6 +82,7 @@ export class RecipeListComponent implements OnInit {
   }
 
 
+
   // ? SECTION handler for getting Categories list and Cuisines list
 
   // TODO - create modal for showing categories and cuisines
@@ -98,5 +102,10 @@ export class RecipeListComponent implements OnInit {
       // console.log(list);
       this.cuisines = list;
     })
+  }
+
+
+  openModal() {
+    this.modalService.categoriesList.next(1);
   }
 }

@@ -18,7 +18,7 @@ import { ShoppingListComponent } from './components/shopping-list/shopping-list.
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { ShoppingItemComponent } from './components/shopping-list/shopping-item/shopping-item.component';
-
+import { CategoryModalComponent } from './components/recipe/recipe-list/category-modal/category-modal.component';
 
 // pipes
 import { SafeUrlPipe } from './components/recipe/recipe-detail/recipe-url.pipe';
@@ -46,7 +46,8 @@ import { HeaderComponent } from './components/header/header.component';
     HomeComponent,
     SafeUrlPipe,
     ShoppingItemComponent,
-    HeaderComponent
+    HeaderComponent,
+    CategoryModalComponent
   ],
   imports: [
     BrowserModule,

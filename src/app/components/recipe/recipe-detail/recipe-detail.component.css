@@ -4,9 +4,25 @@
     object-fit: cover !important;
 }
 
+.modal-header {
+    background-color: #FFFFFF;
+    border-bottom-color: #FFFFFF;
+}
+
+.modal-footer {
+    background-color: #FFFFFF;
+    border-top-color: #FFFFFF;
+}
+
+.modal-content {
+    border-radius: 0;
+    border: none;
+}
+
 .btn {
     border-radius: 5em;
 }
+
 
 .jumbotron {
     margin-bottom: 5%;

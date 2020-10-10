@@ -1,62 +1,68 @@
 <ng-template #mymodal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{selectedRecipe.title}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <img class="content-img" [src]="selectedRecipe.thumbnail" alt="Card image cap">
-    <br />
-    <div class="body-instr">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{selectedRecipe.title}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <img class="content-img" [src]="selectedRecipe.thumbnail" alt="Card image cap">
       <br />
-      <h5><span class="fas fa-list-ul fa-fw"></span>&nbsp; Instructions</h5>
-      <p>{{selectedRecipe.body}}</p>
-    </div>
-    <div class="body-ingredients">
-      <h5><span class="fas fa-leaf fa-fw"></span>&nbsp; Ingredients</h5>
-      <table class="table table-striped table-borderless table-hover">
-        <thead class="bg-info text-white">
-          <tr>
-            <th>Item</th>
-            <th>Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let items of selectedRecipe.ingredients">
-            <td>{{items.name}}</td>
-            <td>{{items.measure}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="body-link" *ngIf="selectedRecipe.link">
-      <h5><span class="fab fa-youtube fa-fw"></span>&nbsp; Youtube</h5>
-      <div class="embed-responsive embed-responsive-16by9 rounded">
-        <iframe class="embed-responsive-item" [src]="selectedRecipe.link | safe" frameborder="0"
-          allowfullscreen></iframe>
+      <div class="body-instr">
+        <br />
+        <h5><span class="fas fa-list-ul fa-fw"></span>&nbsp; Instructions</h5>
+        <p>{{selectedRecipe.body}}</p>
+      </div>
+      <div class="body-ingredients">
+        <h5><span class="fas fa-leaf fa-fw"></span>&nbsp; Ingredients</h5>
+        <table class="table table-striped table-borderless table-hover">
+          <thead class="bg-info text-white">
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let items of selectedRecipe.ingredients">
+              <td>{{items.name}}</td>
+              <td>{{items.measure}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="body-link" *ngIf="selectedRecipe.link">
+        <h5><span class="fab fa-youtube fa-fw"></span>&nbsp; Youtube</h5>
+        <div class="embed-responsive embed-responsive-16by9 rounded">
+          <iframe class="embed-responsive-item" [src]="selectedRecipe.link | safe" frameborder="0"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+      <br />
+      <div class="body-tags">
+        <h5><span class="fas fa-tag fa-fw"></span>&nbsp; Tags</h5>
+        <p (click)="onTagSelected(0, $event.target.innerText)" class="btn btn-outline-info">{{selectedRecipe.category}}</p>
+        <p (click)="onTagSelected(1, $event.target.innerText)" class="btn btn-outline-success ml-3">{{selectedRecipe.area}}</p>
       </div>
     </div>
-    <br />
-    <div class="body-tags">
-      <h5><span class="fas fa-tag fa-fw"></span>&nbsp; Tags</h5>
-      <p (click)="onTagSelected(0, $event.target.innerText)" class="btn btn-outline-info">{{selectedRecipe.category}}</p>
-      <p (click)="onTagSelected(1, $event.target.innerText)" class="btn btn-outline-success ml-3">{{selectedRecipe.area}}</p>
+    <div class="modal-footer">
+      <button type="button" class="btn"
+        [ngClass]="{'btn-danger': selectedRecipe.favourite, 'btn-outline-dark': !selectedRecipe.favourite}"
+        (click)="onFavouriteSelected()">
+        <span class="fas fa-fw"
+          [ngClass]="{'fa-heart-broken': selectedRecipe.favourite, 'fa-heart': !selectedRecipe.favourite}">
+        </span>
+        &nbsp;{{selectedRecipe.favourite ? ' Un-Favourite' : ' Favourite'}}
+      </button>
+  
+      <button type="button" class="btn"
+        [ngClass]="{'btn-danger': selectedRecipe.addedToShopping, 'btn-outline-dark': !selectedRecipe.addedToShopping}"
+        (click)="onAddToShoppingSelected()">
+        <span class="fas fa-fw"
+          [ngClass]="{'fa-minus': selectedRecipe.addedToShopping, 'fa-plus': !selectedRecipe.addedToShopping}">
+        </span>
+        &nbsp;Shopping List
+      </button>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn"
-      [ngClass]="{'btn-danger': selectedRecipe.favourite, 'btn-info': !selectedRecipe.favourite}"
-      (click)="onFavouriteSelected()">
-      <span class="fas fa-fw"
-        [ngClass]="{'fa-heart-broken': selectedRecipe.favourite, 'fa-heart': !selectedRecipe.favourite}"></span>&nbsp;{{selectedRecipe.favourite ? ' Un-Favourite' : ' Favourite'}}
-    </button>
-
-    <button type="button" class="btn"
-      [ngClass]="{'btn-danger': selectedRecipe.addedToShopping, 'btn-success': !selectedRecipe.addedToShopping}"
-      (click)="onAddToShoppingSelected()">
-      <span class="fas fa-fw"
-        [ngClass]="{'fa-minus': selectedRecipe.addedToShopping, 'fa-plus': !selectedRecipe.addedToShopping}"></span>&nbsp;{{selectedRecipe.addedToShopping ? ' Remove' : ' Add'}}
-    </button>
   </div>
 </ng-template>
