@@ -10,8 +10,10 @@ export class ApiService {
     private urlRandom: string = 'https://www.themealdb.com/api/json/v1/1/random.php';   //  random recipe
     private urlById: string = 'https://www.themealdb.com/api/json/v1/1/lookup.php';     // query ?i=id
     private urlFilter: string = 'https://www.themealdb.com/api/json/v1/1/filter.php';   // query c = category 
-                                                                                //       a = area 
-                                                                                //       i = ingredients
+                                                                                        // a = area 
+                                                                                        // i = ingredients
+
+    private urlList: string = "https://www.themealdb.com/api/json/v1/1/list.php";       // list categories / Areas
 
     constructor(
         private axios: AxiosService,
@@ -38,7 +40,7 @@ export class ApiService {
     }
 
     // get a random recipe
-    async RandomRecipe(): Promise<RecipeModel> {
+    private async RandomRecipe(): Promise<RecipeModel> {
         try {
           let recipeObject = await this.axios.get<any>({
             url: this.urlRandom,
@@ -62,7 +64,7 @@ export class ApiService {
     }
 
     // get a list of recipes by search filter (category, area, main ingredient)
-    async RecipesByFilter(query: recipeQueryModel) {
+    private async RecipesByFilter(query: recipeQueryModel) {
         try {
             let list = await this.axios.get<any>({
                 url: this.urlFilter,
@@ -95,7 +97,7 @@ export class ApiService {
         }
         catch(err) {
             console.error(err);
-        }
+        };
     }
 
     // wrapper for async recipesbyfilter
@@ -106,4 +108,45 @@ export class ApiService {
             this.recipeService.addMultipleRecipe(list);
         })
     }
+
+
+    // get the list of all categories
+    public async Categories() {
+        try {
+            let categories = await this.axios.get<any>({
+                url: this.urlList,
+                params: {
+                    c: "list",
+                }
+            });
+
+            categories = categories.meals.map(elem => {
+                return elem["strCategory"];
+            })
+            return categories;
+        }
+        catch(err) {
+            console.error(err);
+        };
+    }
+
+    // get the list of all cuisines (area)
+    public async Cuisines() {
+        try {
+            let cuisines = await this.axios.get<any>({
+                url: this.urlList,
+                params: {
+                    a: "list",
+                }
+            });
+            cuisines = cuisines.meals.map(elem => {
+                return elem["strArea"];
+            });
+            return cuisines;
+        }
+        catch(err) {
+            console.error(err);
+        };
+    }
+
 }

@@ -19,6 +19,9 @@ export class RecipeListComponent implements OnInit {
   public searchItem: string;
   public queryType: string;
 
+  public categories: string[];
+  public cuisines: string[];
+
   @ViewChild('searchTop') searchParentRef: ElementRef;
   @ViewChild('searchForm') searchBarForm: ElementRef;
   
@@ -73,5 +76,27 @@ export class RecipeListComponent implements OnInit {
     let query : recipeQueryModel = new recipeQueryModel;
     query[this.queryType] = this.searchItem;
     this.apiService.getFilteredRecipes(query);
+  }
+
+
+  // ? SECTION handler for getting Categories list and Cuisines list
+
+  // TODO - create modal for showing categories and cuisines
+
+  getCategories(): void {
+    this.apiService.Categories()
+    .then(list => {
+      // console.log(list);
+      // console.log(this.recipeList.length);
+      this.categories = list;
+    })
+  }
+
+  getCuisines(): void {
+    this.apiService.Cuisines()
+    .then(list => {
+      // console.log(list);
+      this.cuisines = list;
+    })
   }
 }

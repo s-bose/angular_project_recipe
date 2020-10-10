@@ -73,8 +73,6 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
 
     let query : recipeQueryModel = new recipeQueryModel;
     query[Tags[tag]] = value;
-    console.log(query);
     this.apiService.getFilteredRecipes(query);
-    this.apiService.RecipesByFilter(query);
   }
 }
