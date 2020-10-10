@@ -35,12 +35,21 @@
 
 </div>
 
-<div class="d-flex justify-content-center align-items-center">
-      <a class="btn btn-outline-danger rounded-pill btn-random" (click)="getRandomRecipe()">
+// TODO - create buttons for 'categories' and 'cuisines'
+
+<div class="d-flex container justify-content-center align-items-center">
+      <a class="btn btn-outline-success rounded-pill btn-random" (click)="getRandomRecipe()">
+        <span class="fas fa-dice"></span>&nbsp;Get Random Recipe</a>
+      <a class="btn btn-outline-danger rounded-pill btn-random ml-3" (click)="getRandomRecipe()">
+        <span class="fas fa-dice"></span>&nbsp;Get Random Recipe</a>
+      <a class="btn btn-outline-danger rounded-pill btn-random ml-3" (click)="getRandomRecipe()">
         <span class="fas fa-dice"></span>&nbsp;Get Random Recipe</a>
 </div>
 <!-- </div> -->
 <br />
+
+// TODO - make this text area reflect what is being searched. like `Search Result for "Lamb"` also
+// change the search area accordingly to reflect on whats being searched
 <div class="container">
   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora recusandae praesentium voluptas alias vero aliquam obcaecati ullam rerum. Voluptatem vel dolor quod facilis nemo sed perferendis unde dicta nisi non.</p>
 </div>

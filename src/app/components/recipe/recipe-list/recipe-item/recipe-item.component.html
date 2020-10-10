@@ -1,17 +1,15 @@
-<div class="col-8">
-  <div class="card">
-    <img class="card-img-top img-fluid" [src]="recipeInstance.thumbnail" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title font-weight-bold mb-2">{{recipeInstance.title}}
-        <span class="fas" [ngClass]="{'fa-heart': recipeInstance.favourite}"></span></h5>
-      <p class="card-text">{{cardText}}</p>
-      <div>
-        <p (click)="fetchRecipesFromTag(0, $event.target.innerText)" class="btn btn-outline-info">{{ recipeInstance.category }}</p>
-        <p (click)="fetchRecipesFromTag(1, $event.target.innerText)" class="btn btn-outline-success ml-3">{{ recipeInstance.area }}</p>
-      </div>
-      <div>
-        <a class="btn btn-danger btn-block p-1 my-1 mr-0 mml-1" (click)="showRecipeDetail()">Read More</a>
-      </div>
+<div class="card">
+  <img class="card-img-top img-fluid" [src]="recipeInstance.thumbnail" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title font-weight-bold mb-2">{{recipeInstance.title}}
+      <span class="fas" [ngClass]="{'fa-heart': recipeInstance.favourite}"></span></h5>
+    <p class="card-text">{{cardText}}</p>
+    <div>
+      <p (click)="fetchRecipesFromTag(0, $event.target.innerText)" class="btn btn-outline-info">{{ recipeInstance.category }}</p>
+      <p (click)="fetchRecipesFromTag(1, $event.target.innerText)" class="btn btn-outline-success ml-3">{{ recipeInstance.area }}</p>
+    </div>
+    <div>
+      <a class="btn btn-danger btn-block p-1 my-1 mr-0 mml-1" (click)="showRecipeDetail()">Read More</a>
     </div>
   </div>
 </div>
