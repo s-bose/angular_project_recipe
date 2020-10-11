@@ -6,7 +6,7 @@ import { RecipeService } from '../../../services/recipe.service';
 import { ApiService } from '../../../services/api.service';
 import { ModalService } from '../../../services/modal.service';
 
-import { recipeQueryModel } from '../../../models/recipe-query.model';
+import { RecipeQueryModel } from '../../../models/recipe-query.model';
 
 
 
@@ -25,37 +25,38 @@ export class RecipeListComponent implements OnInit {
   @ViewChild('searchTop') searchParentRef: ElementRef;
   @ViewChild('searchForm') searchBarForm: ElementRef;
   
-  public types: Array<Object> = 
+  public types: Array<object> = 
   [
-    {name: "Main Ingredient", value: "mainIngredient"},
-    {name: "Category", value: "category"},
-    {name: "Cuisine", value: "area"},
+    {name: 'Main Ingredient', value: 'mainIngredient'},
+    {name: 'Category', value: 'category'},
+    {name: 'Cuisine', value: 'area'},
   ];
 
   constructor(
-    private recipeService: RecipeService, 
+    private recipeService: RecipeService,
     private apiService: ApiService,
-    private modalService: ModalService) { 
-      this.queryType = this.types[0]["value"];
+    private modalService: ModalService) {
+      this.queryType = this.types[0][`value`];
   }
 
   ngOnInit(): void {
 
     // ? this part enables the animation which expands the search bar on page scroll
 
-    window.addEventListener('scroll', () => { 
-        var scrollpos = window.scrollY;
+    window.addEventListener('scroll', () => {
+        const scrollpos = window.scrollY;
         if (scrollpos >= this.searchParentRef.nativeElement.offsetTop) {
-          this.searchBarForm.nativeElement.classList.add("col-12"); 
+          this.searchBarForm.nativeElement.classList.add('col-12');
         }
         else {
-          this.searchBarForm.nativeElement.classList.remove("col-12");
+          this.searchBarForm.nativeElement.classList.remove('col-12');
         }
     });
 
     // ? sync local recipeList with service recipeList via subscription
     this.recipeList = this.recipeService.getRecipes();
     this.recipeService.RecipeChanged
+    // tslint:disable-next-line: variable-name
     .subscribe((recipe_list: RecipeModel[]) => {
       this.recipeList = recipe_list;
     });
@@ -74,18 +75,18 @@ export class RecipeListComponent implements OnInit {
       behavior: 'smooth',
     });
 
-    let query : recipeQueryModel = new recipeQueryModel;
+    const query: RecipeQueryModel = new RecipeQueryModel();
     query[this.queryType] = this.searchItem;
     this.apiService.getFilteredRecipes(query);
   }
 
 
   getCategories(): void {
-    this.modalService.categoriesList.next("categories");
+    this.modalService.categoriesList.next('category');
   }
 
   getCuisines(): void {
-    this.modalService.categoriesList.next("cuisines");
+    this.modalService.categoriesList.next('area');
   }
 
 }

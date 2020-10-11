@@ -46,3 +46,10 @@
     border-bottom-color: #FFFFFF;
     background-color: #FFFFFF;
 }
+
+.list-group-item {
+    margin-top: 1em;
+    border: 0;
+    /* border-radius: 0; */
+    box-shadow: 0px 10px 13px -8px;
+}

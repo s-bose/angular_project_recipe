@@ -11,5 +11,5 @@ export class shoppingItemModel {
         this.title = title;
         this.ingredients = ingredients;
         console.log(this.id);
-    } 
+    }
 }

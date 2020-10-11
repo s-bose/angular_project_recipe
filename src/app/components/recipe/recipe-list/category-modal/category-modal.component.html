@@ -2,19 +2,17 @@
   aria-labelledby="categoryList">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel2">{{ listType }}</h4>
-        <button type="button" class="close" (click)="categoryModal.hide()" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2">
+          <span class="fas" [ngClass]="{'fa-stream': listType === 'category', 'fa-globe-americas': listType === 'area'}">&nbsp; </span>
+          {{ listType === "category" ? "Categories": "Cuisine" }}</h4>
       </div>
 
       <div class="modal-body">
         <ul class="list-group">
-          <a class="btn list-group-item list-group-item-action" *ngFor="let item of list">{{ item }}</a>
+          <a class="btn list-group-item list-group-item-action" (click)="openSelected($event.target.innerText)" *ngFor="let item of list">{{ item }}</a>
         </ul>
       </div>
-
-    </div><!-- modal-content -->
-  </div><!-- modal-dialog -->
-</div><!-- modal -->
+    </div>
+  </div>
+</div>

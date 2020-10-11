@@ -8,6 +8,10 @@
     /* height: 40rem; */
 }
 
+.card:hover {
+    box-shadow: 5px 10px 20px -4px;
+    transition: 0.4s ease-in-out;
+}
 
 .card-img-top {
     border-top-left-radius: 0.5em;

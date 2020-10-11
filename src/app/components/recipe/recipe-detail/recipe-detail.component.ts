@@ -8,7 +8,7 @@ import { ModalService } from '../../../services/modal.service';
 import { shoppingItemModel } from '../../../models/shopping-item.model';
 import { ApiService } from '../../../services/api.service';
 
-import { Tags, recipeQueryModel } from '../../../models/recipe-query.model';
+import { Tags, RecipeQueryModel } from '../../../models/recipe-query.model';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -71,7 +71,7 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
       behavior: 'smooth',
     });
 
-    let query : recipeQueryModel = new recipeQueryModel;
+    let query : RecipeQueryModel = new RecipeQueryModel;
     query[Tags[tag]] = value;
     this.apiService.getFilteredRecipes(query);
   }

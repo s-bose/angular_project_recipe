@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { RecipeModel } from '../../../../models/recipe.model';
 import { ModalService } from '../../../../services/modal.service';
-import { ApiService } from "../../../../services/api.service";
-import { Tags, recipeQueryModel } from "../../../../models/recipe-query.model";
+import { ApiService } from '../../../../services/api.service';
+import { Tags, RecipeQueryModel } from '../../../../models/recipe-query.model';
 
 @Component({
   selector: 'app-recipe-item',
@@ -12,7 +12,7 @@ import { Tags, recipeQueryModel } from "../../../../models/recipe-query.model";
 })
 export class RecipeItemComponent implements OnInit {
 
-  isFavourite: boolean = false;
+  isFavourite = false;
   @Input() recipeInstance: RecipeModel;
   cardText: string;
   constructor(
@@ -24,7 +24,7 @@ export class RecipeItemComponent implements OnInit {
     this.cardText = this.cardText + '...and ' + (this.recipeInstance.ingredients.length - 3) + ' more';
   }
 
-  showRecipeDetail() {
+  showRecipeDetail(): void {
     this.modalService.selectedRecipe.next(this.recipeInstance);
   }
 
@@ -35,7 +35,7 @@ export class RecipeItemComponent implements OnInit {
       left: 0,
       behavior: 'smooth',
     });
-    let query: recipeQueryModel = new recipeQueryModel();
+    const query: RecipeQueryModel = new RecipeQueryModel();
     query[Tags[tag]] = value;
     this.apiService.getFilteredRecipes(query);
   }

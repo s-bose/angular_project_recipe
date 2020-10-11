@@ -3,17 +3,17 @@ import { RecipeService } from './recipe.service';
 import { RecipeModel } from '../models/recipe.model';
 import { Injectable } from '@angular/core';
 
-import { recipeQueryModel } from '../models/recipe-query.model';
+import { RecipeQueryModel } from '../models/recipe-query.model';
 
 @Injectable()
 export class ApiService {
-    private urlRandom: string = 'https://www.themealdb.com/api/json/v1/1/random.php';   //  random recipe
-    private urlById: string = 'https://www.themealdb.com/api/json/v1/1/lookup.php';     // query ?i=id
-    private urlFilter: string = 'https://www.themealdb.com/api/json/v1/1/filter.php';   // query c = category 
+    private urlRandom = 'https://www.themealdb.com/api/json/v1/1/random.php';   //  random recipe
+    private urlById = 'https://www.themealdb.com/api/json/v1/1/lookup.php';     // query ?i=id
+    private urlFilter = 'https://www.themealdb.com/api/json/v1/1/filter.php';   // query c = category 
                                                                                         // a = area 
                                                                                         // i = ingredients
 
-    private urlList: string = "https://www.themealdb.com/api/json/v1/1/list.php";       // list categories / Areas
+    private urlList = 'https://www.themealdb.com/api/json/v1/1/list.php';       // list categories / Areas
 
     constructor(
         private axios: AxiosService,
@@ -22,34 +22,33 @@ export class ApiService {
     // parse the json response into RecipeModel object
     private parseMeal(meal_info: any): RecipeModel {
 
-        let id = parseInt(meal_info['idMeal']);
-        let title = meal_info['strMeal'];
-        let body = meal_info['strInstructions'];
-        let category = meal_info['strCategory'];
-        let area = meal_info['strArea'];
-        let thumbnail = meal_info['strMealThumb'];
-        let link = meal_info['strYoutube'];
-        let ingredients: {name: string, measure: string}[] = [];
+        const id = parseInt(meal_info[`idMeal`]);
+        const title = meal_info[`strMeal`];
+        const body = meal_info[`strInstructions`];
+        const category = meal_info[`strCategory`];
+        const area = meal_info[`strArea`];
+        const thumbnail = meal_info[`strMealThumb`];
+        const link = meal_info[`strYoutube`];
+        const ingredients: {name: string, measure: string}[] = [];
         for (let i = 1; i <= 20; i++) {
             if (meal_info['strIngredient' + i] !== "" && meal_info['strMeasure' + i] !== "") {
                 ingredients.push({'name': meal_info['strIngredient' + i], 'measure': meal_info['strMeasure' + i]});
-            }        
-        }   
-        let recipe = new RecipeModel(id, title, body, category, area, thumbnail, link, ingredients);
+            }
+        }
+        const recipe = new RecipeModel(id, title, body, category, area, thumbnail, link, ingredients);
         return recipe;
     }
 
     // get a random recipe
     private async RandomRecipe(): Promise<RecipeModel> {
         try {
-          let recipeObject = await this.axios.get<any>({
+          const recipeObject = await this.axios.get<any>({
             url: this.urlRandom,
           });
-          let meals: any = recipeObject.meals.map(this.parseMeal);
-          
-          return new Promise<RecipeModel>((resolve, reject) => {resolve(meals[0])});
+          const meals: any = recipeObject.meals.map(this.parseMeal);
+          return new Promise<RecipeModel>((resolve, reject) => { resolve(meals[0]); });
         }
-        catch(error) {
+        catch (error) {
           console.error(error);
         }
     }
@@ -60,11 +59,11 @@ export class ApiService {
         .then(recipe => {
             this.recipeService.clearSearch();
             this.recipeService.addRecipes(recipe);
-        })
+        });
     }
 
     // get a list of recipes by search filter (category, area, main ingredient)
-    private async RecipesByFilter(query: recipeQueryModel) {
+    private async RecipesByFilter(query: RecipeQueryModel) {
         try {
             let list = await this.axios.get<any>({
                 url: this.urlFilter,
@@ -86,7 +85,7 @@ export class ApiService {
                         }
                     });
                 })).then(list => {
-                    let recipeList: RecipeModel[] = list.map((item: any) => {
+                    const recipeList: RecipeModel[] = list.map((item: any) => {
                         return this.parseMeal(item.meals[0]);
                     })
                     return recipeList;
@@ -95,13 +94,13 @@ export class ApiService {
                 return [];
             }
         }
-        catch(err) {
+        catch (err) {
             console.error(err);
-        };
+        }
     }
 
     // wrapper for async recipesbyfilter
-    getFilteredRecipes(query: recipeQueryModel): void {
+    getFilteredRecipes(query: RecipeQueryModel): void {
         this.RecipesByFilter(query)
         .then(list => {
             this.recipeService.clearSearch();
