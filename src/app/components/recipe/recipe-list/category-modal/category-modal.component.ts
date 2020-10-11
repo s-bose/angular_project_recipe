@@ -3,6 +3,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 
 import { ModalService } from '../../../../services/modal.service';
+import { ApiService } from '../../../../services/api.service';
 
 @Component({
   selector: 'app-category-modal',
@@ -14,14 +15,35 @@ export class CategoryModalComponent implements OnInit {
   @ViewChild('categoryModal') modal: any;
   sub: any;
   
+  list: string[] = [];
+  listType: string;
+
   constructor(
     private bsModal: BsModalService,
-    private modalService: ModalService) { }
+    private modalService: ModalService,
+    private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.sub = this.modalService.categoriesList.subscribe(val => {
-      // this.openModal(this.modal);
+    this.sub = this.modalService.categoriesList.subscribe(type => {
+      this.listType = type;
+      if (type === "categories") {
+        this.apiService.Categories()
+        .then(categories => {
+          this.list = categories;
+          console.log(categories);
+        })
+      }
+      else {
+        this.apiService.Cuisines()
+        .then(cuisines => {
+          this.list = cuisines;
+          console.log(cuisines);
+        })
+      }   
       this.modal.show();
     })
   }
+
+
+
 }
