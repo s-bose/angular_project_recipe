@@ -31,14 +31,12 @@ export class CategoryModalComponent implements OnInit {
         this.apiService.Categories()
         .then(categories => {
           this.list = categories;
-          console.log(categories);
         });
       }
       else {
         this.apiService.Cuisines()
         .then(cuisines => {
           this.list = cuisines;
-          console.log(cuisines);
         });
       }
       this.modal.show();

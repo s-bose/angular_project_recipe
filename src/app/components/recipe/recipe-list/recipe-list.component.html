@@ -1,3 +1,6 @@
+<app-category-modal></app-category-modal>
+
+
 
 <div class="jumbotron text-center container">
   <h1 class="display-4">Search your recipes</h1>
@@ -32,7 +35,6 @@
           </div>
         </div>
     </div>
-
 </div>
 
 
@@ -44,16 +46,18 @@
       <a class="btn btn-outline-success rounded-pill btn-random ml-3" (click)="getCuisines()">
         <span class="fas fa-globe-americas"></span>&nbsp;Cuisines</a>
 </div>
-<!-- </div> -->
+<br />
 <br />
 
-<div class="container" *ngIf="!recipeList.length">
-  <ul class="list-group">
-    <li *ngFor="let cat of categories" class="list-group-item">{{ cat }}</li>
-  </ul>
+<div class="d-flex container justify-content-center" *ngIf="searchResultInfo">
+  <h2>
+    Search for "{{ searchResultInfo }}" ({{ recipeList.length }} Results)
+  </h2>
 </div>
 
-<app-category-modal></app-category-modal>
+
+<br />
+<br />
 
 
 <div class="container-fluid d-flex justify-content-center p-0 m-0">

@@ -21,6 +21,7 @@ export class RecipeListComponent implements OnInit {
   public searchItem: string;
   public queryType: string;
 
+  public searchResultInfo: string;
 
   @ViewChild('searchTop') searchParentRef: ElementRef;
   @ViewChild('searchForm') searchBarForm: ElementRef;
@@ -59,6 +60,10 @@ export class RecipeListComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     .subscribe((recipe_list: RecipeModel[]) => {
       this.recipeList = recipe_list;
+    });
+
+    this.apiService.currentQuery.subscribe(query => {
+      this.searchResultInfo = query[Object.keys(query)[0]];
     });
   }
 

@@ -1,7 +1,9 @@
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+
 import { AxiosService } from './axios.service';
 import { RecipeService } from './recipe.service';
 import { RecipeModel } from '../models/recipe.model';
-import { Injectable } from '@angular/core';
 
 import { RecipeQueryModel } from '../models/recipe-query.model';
 
@@ -14,6 +16,9 @@ export class ApiService {
                                                                                         // i = ingredients
 
     private urlList = 'https://www.themealdb.com/api/json/v1/1/list.php';       // list categories / Areas
+
+    currentQuery = new Subject<RecipeQueryModel>();
+
 
     constructor(
         private axios: AxiosService,
@@ -101,6 +106,7 @@ export class ApiService {
 
     // wrapper for async recipesbyfilter
     getFilteredRecipes(query: RecipeQueryModel): void {
+        this.currentQuery.next(query);
         this.RecipesByFilter(query)
         .then(list => {
             this.recipeService.clearSearch();
