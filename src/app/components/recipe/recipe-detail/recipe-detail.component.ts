@@ -26,24 +26,24 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
               private recipeService: RecipeService,
               private apiService: ApiService) {}
 
-  openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<any>): void {
     this.modalRef = this.ngModalService.show(template, {class: 'modal-lg'});
   }
-  
+
   ngOnInit(): void {
     this.sub = this.modalService.selectedRecipe.subscribe(val => {
       this.selectedRecipe = val;
       if (val) {
         this.openModal(this.modal);
       }
-    })
+    });
   }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 
-  onFavouriteSelected() {
+  onFavouriteSelected(): void {
     this.selectedRecipe.favourite = !this.selectedRecipe.favourite;
     if (this.selectedRecipe.favourite) {
       this.recipeService.addFavouritedRecipe(this.selectedRecipe);
@@ -52,9 +52,13 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  onAddToShoppingSelected() {
+  onAddToShoppingSelected(): void {
     this.selectedRecipe.addedToShopping = !this.selectedRecipe.addedToShopping;
-    let shoppingItem: shoppingItemModel = new shoppingItemModel(this.selectedRecipe.id, this.selectedRecipe.title, this.selectedRecipe.ingredients);
+    const shoppingItem: shoppingItemModel = new shoppingItemModel(
+      this.selectedRecipe.id,
+      this.selectedRecipe.title,
+      this.selectedRecipe.ingredients);
+
     if (this.selectedRecipe.addedToShopping) {
       this.recipeService.addToShoppingList(shoppingItem);
     } else {
@@ -71,7 +75,7 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
       behavior: 'smooth',
     });
 
-    let query : RecipeQueryModel = new RecipeQueryModel;
+    const query: RecipeQueryModel = new RecipeQueryModel();
     query[Tags[tag]] = value;
     this.apiService.getFilteredRecipes(query);
   }

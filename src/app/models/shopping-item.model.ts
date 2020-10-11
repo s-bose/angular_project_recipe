@@ -4,7 +4,7 @@ export class shoppingItemModel {
     ingredients: {
         name: string,
         measure: string
-    }
+    };
 
     constructor(id, title, ingredients) {
         this.id = id;

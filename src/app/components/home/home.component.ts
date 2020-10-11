@@ -10,7 +10,7 @@ import { RecipeModel } from '../../models/recipe.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
+
   favouriteRecipes: RecipeModel[] = [];
 
   constructor(private recipeService: RecipeService) {
@@ -20,8 +20,8 @@ export class HomeComponent implements OnInit {
     this.favouriteRecipes = this.favouriteRecipes.concat(this.recipeService.getFavouriteRecipes());
     this.recipeService.FavouritesChanged.subscribe(favouriteRecipeList => {
       this.favouriteRecipes = favouriteRecipeList;
-    })
-    
+    });
+
   }
 }
 

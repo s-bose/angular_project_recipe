@@ -59,7 +59,7 @@ import { HeaderComponent } from './components/header/header.component';
     CollapseModule.forRoot()
   ],
   providers: [
-    AxiosService, 
+    AxiosService,
     RecipeService,
     ModalService,
     ApiService

@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'shoppingApp';
-  isCollapsed: boolean = true;
+  isCollapsed = true;
 }

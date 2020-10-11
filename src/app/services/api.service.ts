@@ -9,8 +9,8 @@ import { RecipeQueryModel } from '../models/recipe-query.model';
 export class ApiService {
     private urlRandom = 'https://www.themealdb.com/api/json/v1/1/random.php';   //  random recipe
     private urlById = 'https://www.themealdb.com/api/json/v1/1/lookup.php';     // query ?i=id
-    private urlFilter = 'https://www.themealdb.com/api/json/v1/1/filter.php';   // query c = category 
-                                                                                        // a = area 
+    private urlFilter = 'https://www.themealdb.com/api/json/v1/1/filter.php';   // query c = category
+                                                                                        // a = area
                                                                                         // i = ingredients
 
     private urlList = 'https://www.themealdb.com/api/json/v1/1/list.php';       // list categories / Areas
@@ -31,8 +31,8 @@ export class ApiService {
         const link = meal_info[`strYoutube`];
         const ingredients: {name: string, measure: string}[] = [];
         for (let i = 1; i <= 20; i++) {
-            if (meal_info['strIngredient' + i] !== "" && meal_info['strMeasure' + i] !== "") {
-                ingredients.push({'name': meal_info['strIngredient' + i], 'measure': meal_info['strMeasure' + i]});
+            if (meal_info['strIngredient' + i] !== '' && meal_info['strMeasure' + i] !== '') {
+                ingredients.push({name: meal_info['strIngredient' + i], measure: meal_info['strMeasure' + i]});
             }
         }
         const recipe = new RecipeModel(id, title, body, category, area, thumbnail, link, ingredients);
@@ -63,7 +63,7 @@ export class ApiService {
     }
 
     // get a list of recipes by search filter (category, area, main ingredient)
-    private async RecipesByFilter(query: RecipeQueryModel) {
+    private async RecipesByFilter(query: RecipeQueryModel): Promise<any> {
         try {
             let list = await this.axios.get<any>({
                 url: this.urlFilter,
@@ -75,7 +75,7 @@ export class ApiService {
             });
             if (list.meals) {
                 list = list.meals.map((elem) => {
-                    return parseInt(elem['idMeal']);
+                    return parseInt(elem.idMeal);
                 });
                 return await Promise.all(list.map(async (id) => {
                     return await this.axios.get<any>({
@@ -87,7 +87,7 @@ export class ApiService {
                 })).then(list => {
                     const recipeList: RecipeModel[] = list.map((item: any) => {
                         return this.parseMeal(item.meals[0]);
-                    })
+                    });
                     return recipeList;
                 });
             } else {
@@ -105,47 +105,47 @@ export class ApiService {
         .then(list => {
             this.recipeService.clearSearch();
             this.recipeService.addMultipleRecipe(list);
-        })
+        });
     }
 
 
     // get the list of all categories
-    public async Categories() {
+    public async Categories(): Promise<any> {
         try {
             let categories = await this.axios.get<any>({
                 url: this.urlList,
                 params: {
-                    c: "list",
+                    c: 'list',
                 }
             });
 
             categories = categories.meals.map(elem => {
-                return elem["strCategory"];
-            })
+                return elem.strCategory;
+            });
             return categories;
         }
-        catch(err) {
+        catch (err) {
             console.error(err);
-        };
+        }
     }
 
     // get the list of all cuisines (area)
-    public async Cuisines() {
+    public async Cuisines(): Promise<any> {
         try {
             let cuisines = await this.axios.get<any>({
                 url: this.urlList,
                 params: {
-                    a: "list",
+                    a: 'list',
                 }
             });
             cuisines = cuisines.meals.map(elem => {
-                return elem["strArea"];
+                return elem.strArea;
             });
             return cuisines;
         }
-        catch(err) {
+        catch (err) {
             console.error(err);
-        };
+        }
     }
 
 }

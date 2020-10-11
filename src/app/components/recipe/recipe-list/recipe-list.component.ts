@@ -24,8 +24,8 @@ export class RecipeListComponent implements OnInit {
 
   @ViewChild('searchTop') searchParentRef: ElementRef;
   @ViewChild('searchForm') searchBarForm: ElementRef;
-  
-  public types: Array<object> = 
+
+  public types: Array<object> =
   [
     {name: 'Main Ingredient', value: 'mainIngredient'},
     {name: 'Category', value: 'category'},
@@ -67,7 +67,7 @@ export class RecipeListComponent implements OnInit {
   getRandomRecipe(): void {
     this.apiService.getRandomRecipe();
   }
-  
+
   getRecipesFromSearch(): void {
     window.scroll({
       top: 0,

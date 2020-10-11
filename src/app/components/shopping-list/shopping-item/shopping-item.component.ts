@@ -6,10 +6,10 @@ import { shoppingItemModel } from '../../../models/shopping-item.model';
   styleUrls: ['./shopping-item.component.css']
 })
 export class ShoppingItemComponent implements OnInit {
-  
+
   @Input() shoppingItem: shoppingItemModel;
-  isCollapsed: boolean = false;
-  
+  isCollapsed = false;
+
   constructor() { }
 
   ngOnInit(): void {
